@@ -7,9 +7,10 @@ body {
 
 .nh-navbar {
     position: sticky;
+    top: 0;
     font-weight: bold;
     font-size: 14px;
-    color: white;
+    color: #fff;
     width: 100%;
     background-color: #4383af;
     color: rgba(255,255,255,255);
@@ -25,7 +26,7 @@ body {
   width: 100%;
   font-size: 12px;
   min-height: 20px;
-  background-color: white;
+  background-color: #fff;
   color: #a5a7b6;
   margin-bottom: 5px;
 }
@@ -51,21 +52,21 @@ border-bottom: 2px solid grey;
 }
 
 .nh-navbar-item > a {
-  color: white;
+  color: #fff;
   text-decoration: none;
 }
 
 .nh-navbar .active {
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid #fff;
 }
 
 .nh-navbar-item:hover {
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid #fff;
 }
 
 .nh-navbar-brand {
   background-color: #2e6e99;
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid #fff;
 }
 
 main {
@@ -73,48 +74,61 @@ main {
   flex-direction: column;
 }
 
-@media (min-width: 500px)  {
-  article {
-    background-color: white;
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 3fr 10fr;
-    grid-template-areas: 
-      "feedback vote vote"
-      "thumbnail thumbnail thumblnail"
-      "content content content";
-  }
-}
-
 .nh-content {
   grid-area: content;
 }
 
 article {
-  background-color: white;
   margin-bottom: 5px;
+  background-color: #fff;
   display: grid;
-  grid-template-columns: 0.4fr 1.6fr;
-  grid-template-rows: 1.5fr 0.5fr;
-  grid-gap: 1px;
-  justify-items: center;
+  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.5fr 0.5fr 0.2fr;
   grid-template-areas: 
-    "thumbnail content" 
-    "thumbnail feedback";
+    "thumbnail"
+    "content"
+    "feedback";
+}
+
+.thumbnail > a > img { 
+  width: 100%;
+}
+
+@media screen and (min-width: 36em) {
+  article {
+    background-color: #fff;
+    margin-bottom: 5px;
+    display: grid;
+    grid-template-columns: 0.4fr 1.6fr;
+    grid-template-rows: 1.5fr 0.5fr;
+    grid-gap: 1px;
+    justify-items: center;
+    grid-template-areas: 
+      "thumbnail content" 
+      "thumbnail feedback";
+  }
+
+  .thumbnail > a > img { 
+    width: 230px;
+  }
+
 }
 
 .thumbnail { 
   grid-area: thumbnail; 
-  padding: 15px;
+  padding: 5px;
 }
 
 .content { 
   grid-area: content;
+  padding: 5px;
 }
 
 .feedback { 
   grid-area: feedback; 
   width: 100%;
+  padding: 10px;
 }
 
 .content > h2 {
@@ -142,7 +156,7 @@ article {
 
 footer {
   background-color: #4383af;
-  color: white;
+  color: #fff;
   text-align: center;
   padding: 30px;
 }
@@ -152,13 +166,15 @@ footer {
 .nh-user {
   display: grid;
   height: 100%;
-  grid-template-columns: 0.3fr 1.5fr 0.4fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1.4fr 0.7fr;
   grid-gap: 1px;
   grid-template-areas: 
-    "user-background user-background user-background" 
-    "user-avatar user-description user-options";
-  background-color: white;
+    "user-background" 
+    "user-avatar"
+    "user-options"
+    "user-description";
+  background-color: #fff;
   margin-bottom: 5px;
 }
 
@@ -181,6 +197,7 @@ footer {
 .user-description { 
   grid-area: user-description; 
   color: #56595a;
+  text-align: center;
 }
 
 .user-description > h2 { 
@@ -191,13 +208,29 @@ footer {
   grid-area: user-options;
   justify-self: start;
   align-self: center;
+  display: flex;
+}
+
+
+@media screen and (min-width: 36em) {
+  .nh-user {
+    grid-template-columns: 0.3fr 1.5fr 0.4fr;
+    grid-template-rows: 1.4fr 0.7fr;
+    grid-template-areas: 
+      "user-background user-background user-background" 
+      "user-avatar user-description user-options";
+  }
+  
+  .user-description { 
+    text-align: left;
+  }
 }
 
 .button {
   border: 0.5px solid black;
   border-radius: 3px;
   background-color: #4383af;
-  color: white;
+  color: #fff;
   font-size: 12px;
   margin-left: auto;
   margin-right: auto;
