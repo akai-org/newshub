@@ -3,6 +3,9 @@ body {
     padding: 0;
     margin: 0;
     background-color: #ecf0f1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .nh-navbar {
@@ -13,7 +16,7 @@ body {
     color: #fff;
     width: 100%;
     background-color: #4383af;
-    color: rgba(255,255,255,255);
+    color: #fff;
     min-height: 80px;
 }
 
@@ -209,6 +212,56 @@ footer {
   justify-self: start;
   align-self: center;
   display: flex;
+}
+
+/* Comment */
+.nh-comment {
+  background-color: #fff;
+  display: grid;
+  height: 100%;
+  margin-bottom: 5px;
+  grid-template-columns: 0.2fr 1.8fr;
+  grid-template-rows: 0.2fr 1.8fr;
+  grid-gap: 5px;
+  grid-template-areas: 
+    "comment_image comment_author" 
+    "comment_image comment_content";
+}
+
+.comment_image { 
+  grid-area: comment_image; 
+  justify-self: center;
+  margin: 10px;
+}
+
+.comment_image > img {
+  width: 60px;
+}
+
+.comment_author { 
+  grid-area: comment_author; 
+  margin-top: 10px;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.comment_author > span {
+  color: #ff5917;
+  font-weight: bold;
+}
+
+.comment_content { 
+  grid-area: comment_content; 
+  margin-top: 2px;
+}
+
+.comment_content > textarea {
+  width: 98%;
+}
+
+.comment_options {
+  margin-top: 5px;
+  font-size: 14px;
+  color: grey;
 }
 
 
