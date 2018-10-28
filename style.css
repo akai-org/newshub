@@ -95,6 +95,46 @@ article {
   width: 100%;
 }
 
+.nh-settings {
+  display: grid;
+  background-color: white;
+  height: 100%;
+  grid-template-columns: 0.5fr 1.5fr;
+  grid-template-rows: 1fr;
+  grid-gap: 1px;
+  grid-template-areas: "settings-menu settings-content";
+  border: 1px solid #f3f3f3;
+}
+
+.settings-menu { 
+  grid-area: settings-menu; 
+  text-align: center;
+  border-right: 1px solid #f3f3f3;
+}
+
+.settings-content { 
+  grid-area: settings-content; 
+  justify-self: center;
+  margin: 20px;
+  width: 75%;
+  height: 50px;
+  background-color: red;
+}
+
+.settings-menu-item {
+  padding: 30px;
+  color: #a5a7b6;
+}
+
+.settings-menu-item.active {
+  background-color: rgb(230, 230, 230);
+  font-weight: bold;
+}
+
+.settings-menu-item:hover {
+  color: #606169;
+}
+
 @media screen and (min-width: 36em) {
   article {
     background-color: #fff;
