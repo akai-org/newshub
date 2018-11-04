@@ -7,7 +7,7 @@
             <div class="thumbnail"><a href="#"><img src="{{ $post->image }}"></a></div>
             <div class="content">
             <h2><a href="{{ $post->url }}">{{ $post->title }}</a></h2>
-            <span>Autor: Pawel - 43 komentarze - opublikowano {{ $post->created_at }}</span>
+            <span>Autor: {{ $post->user->username }} - 43 komentarze - opublikowano {{ $post->created_at }}</span>
             <p>{{ $post->description }}</p>
             </div>
             <div class="feedback">
