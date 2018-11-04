@@ -9,7 +9,6 @@ class PostController extends Controller
 {
     public function home() {
         $posts = Post::all();
-        dd($posts);
         return view('posts', ['posts' => $posts]);
     }
 

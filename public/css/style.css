@@ -163,6 +163,7 @@ article {
 .content { 
   grid-area: content;
   padding: 5px;
+  justify-self: start;
 }
 
 .feedback { 

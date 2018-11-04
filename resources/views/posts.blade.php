@@ -4,12 +4,11 @@
 <main class="nh-content">
     @foreach ($posts as $post)
         <article>
-            <div class="thumbnail"><a href="#"><img src="https://www.wykop.pl/cdn/c3397993/link_UWK5HvcfB5AHW0K6ZxQybcPiyuwrlvEe,w207h139.jpg"></a></div>
+            <div class="thumbnail"><a href="#"><img src="{{ $post->image }}"></a></div>
             <div class="content">
-            <h2><a href="#">{{ $post->title }}</a></h2>
-            <span>Autor: Pawel - 43 komentarze - opublikowano 40 min temu</span>
-            <p>Alias sit dicta animi ipsa quis eum quaerat. Tempore vel voluptatem fuga porro exercitationem inventore
-                omnis doloribus.</p>
+            <h2><a href="{{ $post->url }}">{{ $post->title }}</a></h2>
+            <span>Autor: Pawel - 43 komentarze - opublikowano {{ $post->created_at }}</span>
+            <p>{{ $post->description }}</p>
             </div>
             <div class="feedback">
                 <a href="#"><i class="fas fa-plus-circle fa-2x"></i></a>72
