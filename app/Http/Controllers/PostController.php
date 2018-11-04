@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class PostController extends Controller
 {
     public function home() {
-        return view('posts');
+        $posts = Post::all();
+        dd($posts);
+        return view('posts', ['posts' => $posts]);
     }
 
     public function user() {

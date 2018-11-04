@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->text('image');
             $table->string('password');
+            $table->rememberToken();
             $table->string('firstname',50);
             $table->string('lastname',50);
             $table->boolean('is_locked')->default(false);

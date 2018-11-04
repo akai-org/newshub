@@ -15,14 +15,14 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('postid')->index();
-            $table->string('name');
+            $table->string('title');
             $table->string('description');
             $table->text('url');
             $table->text('image');
-            $table->boolean('is_adult')->default(false);
-            $table->boolean('is_visable')->default(true);
-            $table->unsignedInteger('userid');
-            $table->foreign('userid')->references('userid')->on('users');
+            // $table->boolean('is_adult')->default(false);
+            // $table->boolean('is_visable')->default(true);
+            // $table->unsignedInteger('userid');
+            // $table->foreign('userid')->references('userid')->on('users');
             $table->timestamps();
         });
     }
