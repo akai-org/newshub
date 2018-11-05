@@ -15,4 +15,12 @@ class PostController extends Controller
     public function user() {
         return view('user');
     }
+
+    public function create() {
+        return view('create');
+    }
+
+    public function new_post() {
+        return request()->all();
+    }
 }
