@@ -13,6 +13,7 @@
 
 Route::get('/', "PostController@home");
 Route::get('/user', "PostController@user");
+Route::get('/user/{username}', "PostController@user");
 Route::get('/create', "PostController@create");
 
 Route::post('/posts', "PostController@new_post");

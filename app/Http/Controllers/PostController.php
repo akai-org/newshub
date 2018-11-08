@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 class PostController extends Controller
 {
@@ -12,8 +13,11 @@ class PostController extends Controller
         return view('posts', ['posts' => $posts]);
     }
 
-    public function user() {
-        return view('user');
+    public function user($username) {
+        $user = User::where('username', $username)->get()->first();
+        $posts = $user->posts;
+        
+        return view('user', ['user' => $user, 'posts' => $posts]);
     }
 
     public function create() {
