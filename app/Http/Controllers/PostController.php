@@ -16,7 +16,6 @@ class PostController extends Controller
     public function user($username) {
         $user = User::where('username', $username)->get()->first();
         $posts = $user->posts;
-        
         return view('user', ['user' => $user, 'posts' => $posts]);
     }
 
