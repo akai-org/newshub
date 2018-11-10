@@ -40,5 +40,6 @@ DB_PASSWORD=qwerty123
 php artisan migrate:fresh
 ```
 **Uwaga! To polecenie wyczyści całą dotychczasową zawartość bazy danych i utworzy tabele na nowo.**
+
 8. Uruchom aplikację poleceniem ``` php artisan serve ```
 9. Wejdź pod adres [localhost:8000](http://localhost:8000) i korzystaj z aplikacji.
