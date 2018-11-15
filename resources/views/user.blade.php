@@ -5,13 +5,13 @@
         <div class="user-background">
         </div>
         <div class="user-avatar">
-          <img src="https://ivegotaproblemblog.files.wordpress.com/2012/07/386px-tux-g2-svg1.png">
+        <img src="{{ $user->image }}" alt="{{ $user->username }}">
         </div>
         <div class="user-description">
-          <h2>Paweł Wiczyński</h2>
+          <h2>{{ $user->username }}</h2>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
           <div class="nh-navbar-list">
-            <div class="nh-navbar-item-extra">Wpisy (7)</div>
+            <div class="nh-navbar-item-extra">Wpisy ({{ $posts->count() }})</div>
             <div class="nh-navbar-item-extra">Komentarze (42)</div>
             <div class="nh-navbar-item-extra">Plusy (328)</div>
           </div>
@@ -26,47 +26,19 @@
         </div>
       </div>
       <div class="nh-content">
+        @foreach ($posts as $post)
         <article>
-          <div class="thumbnail"><a href="#"><img src="https://www.wykop.pl/cdn/c3397993/link_UWK5HvcfB5AHW0K6ZxQybcPiyuwrlvEe,w207h139.jpg"></a></div>
-          <div class="content">
-            <h2><a href="#">Title of the content</a></h2>
-            <span>Autor: Pawel - 43 komentarze - opublikowano 40 min temu</span>
-            <p>Alias sit dicta animi ipsa quis eum quaerat. Tempore vel voluptatem fuga porro exercitationem inventore
-              omnis doloribus.</p>
-          </div>
-          <div class="feedback">
-            <a href="#"><i class="fas fa-plus-circle fa-2x"></i></a>72
-            <a href="#"><i class="fas fa-minus-circle fa-2x"></i></a>14
-          </div>
+            <div class="thumbnail"><a href="{{ $post->url }}"><img src="{{ $post->image }}"></a></div>
+            <div class="content">
+            <h2><a href="{{ $post->url }}">{{ $post->title }}</a></h2>
+            <span>Autor: <a href="/user/{{ $post->user->username }}">{{ $post->user->username }}</a> - 43 komentarze - opublikowano {{ $post->created_at }}</span>
+            <p>{{ $post->description }}</p>
+            </div>
+            <div class="feedback">
+                <a href="#"><i class="fas fa-plus-circle fa-2x"></i></a>72
+                <a href="#"><i class="fas fa-minus-circle fa-2x"></i></a>14
+            </div>
         </article>
-
-        <article>
-          <div class="thumbnail"><a href="#"><img src="https://www.wykop.pl/cdn/c3397993/link_UWK5HvcfB5AHW0K6ZxQybcPiyuwrlvEe,w207h139.jpg"></a></div>
-          <div class="content">
-            <h2><a href="#">Title of the content</a></h2>
-            <span>Autor: Pawel - 43 komentarze - opublikowano 40 min temu</span>
-            <p>Alias sit dicta animi ipsa quis eum quaerat. Tempore vel voluptatem fuga porro exercitationem inventore
-              omnis doloribus.</p>
-          </div>
-          <div class="feedback">
-            <a href="#"><i class="fas fa-plus-circle fa-2x"></i></a>72
-            <a href="#"><i class="fas fa-minus-circle fa-2x"></i></a>14
-          </div>
-        </article>
-
-        <article>
-          <div class="thumbnail"><a href="#"><img src="https://www.wykop.pl/cdn/c3397993/link_UWK5HvcfB5AHW0K6ZxQybcPiyuwrlvEe,w207h139.jpg"></a></div>
-          <div class="content">
-            <h2><a href="#">Title of the content</a></h2>
-            <span>Autor: Pawel - 43 komentarze - opublikowano 40 min temu</span>
-            <p>Alias sit dicta animi ipsa quis eum quaerat. Tempore vel voluptatem fuga porro exercitationem inventore
-              omnis doloribus.</p>
-          </div>
-          <div class="feedback">
-            <a href="#"><i class="fas fa-plus-circle fa-2x"></i></a>72
-            <a href="#"><i class="fas fa-minus-circle fa-2x"></i></a>14
-          </div>
-        </article>
-
+    @endforeach
       </div>
 @endsection

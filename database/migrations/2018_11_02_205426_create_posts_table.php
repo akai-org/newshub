@@ -29,12 +29,12 @@ class CreatePostsTable extends Migration
         // Insert some stuff
         DB::table('posts')->insert(
             array(
-                'title' => 'Windows 10 Update Brings Zoom In Feature To Console In Latest Insider Build',
+                'title' => 'Window 10 Update Brings Zoom In Feature To Console In Latest Insider Build',
                 'description' => 'Windows console feature that Microsoft users have been requesting for a long time – zooming in support to the Windows Power Shell and Windows Prompt has been added by Microsoft',
                 'url' => 'https://fossbytes.com/windows-10-update-brings-zoom-in-feature-to-console-in-latest-insider-build',
                 'image' => 'https://fossbytes.com/wp-content/uploads/2018/11/Windows-PowerShell-Zoom-In-Feature-640x360.jpg',
                 'user_id' => App\User::first()->user_id
-            ),
+            )
         );
 
         DB::table('posts')->insert(
