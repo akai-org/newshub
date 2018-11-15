@@ -132,7 +132,6 @@
     @yield('footer')
 
 
-
     <script async type="text/javascript">
       document.addEventListener('DOMContentLoaded', () => {
         const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);

@@ -1,9 +1,7 @@
 @extends('layouts/base')
 
 @section('content')
-    @foreach ($posts as $post)
-        @include('layouts/post', ['post' => $post])
-    @endforeach
+    @include('layouts/login')
 @endsection
 
 @section('footer')
