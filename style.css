@@ -114,9 +114,60 @@ footer {
 
 .login-element{
   width:50%;
+
   
 }
 
 section{
   margin-top:10px; margin-bottom:100px; margin-left:10px; margin-right:10px;
+}
+.specials{
+width:100%;
+
+
+}
+
+.special-left{
+	float:left;
+width:50%;
+	
+}
+.special-right{
+float:right;
+width:50%;
+}
+.log-form{
+border-style: none;
+border-radius:0px;
+}
+.log-form:active{
+  border-bottom: 4px solid #4383af;
+}
+
+.log-form:hover{
+  color: #4383af;
+  border-radius: 0px;
+  font-weight: 5;
+}
+.log-form.active{
+  border-bottom: 4px solid #4383af;
+
+}
+.log-form.active:hover{
+  font-weight:normal;
+  color:inherit;
+}
+
+
+.forms-login{
+  background-color: #dfe6e9;
+  padding:70px 20px 20px 20px;
+  display:block;
+ }
+
+.forms-register{
+  background-color: #dfe6e9;
+  padding:20px;
+  padding-top: 70px;
+  display:none;
 }
