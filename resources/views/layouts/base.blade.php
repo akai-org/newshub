@@ -13,7 +13,9 @@
   <!-- Styles -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+  
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -22,7 +24,7 @@
       <div class="navbar-brand">
 
         <a class="navbar-item" href="{{ url('/') }}">
-          {{ config('app.name', 'NewsHub') }}
+          <img src="img/newshub.png" style="width:100%; height:3000%;" alt="{{ config('app.name', 'NewsHub') }}">
         </a>
 
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -41,7 +43,6 @@
           <a class="navbar-item">
             Poczekalnia
           </a>
-
         </div>
 
         <div class="navbar-end">
@@ -49,7 +50,9 @@
 
           <div class="navbar-item has-dropdown is-hoverable" style="z-index:50;">
             <a class="navbar-link">
-              TestUser
+              @if (isset(Auth::user()->username ))
+                {{ Auth::user()->username }}
+              @endif
             </a>
 
             <div class="navbar-dropdown" style="z-index:31;">
@@ -72,16 +75,21 @@
 
           <div class="navbar-item">
             <div class="buttons">
-
-
-
-
-              <a class="button is-primary">
-                <strong>Rejestracja</strong>
+              @if (Auth::check())
+              <a class="button is-light">
+                  <strong>Dodaj wpis</strong>
               </a>
-              <a class="button is-light" href="#">
-                Login
-              </a>
+                <a class="button is-danger">
+                    <strong>Wyloguj</strong>
+                </a>
+              @else
+                <a class="button is-primary">
+                  <strong>Rejestracja</strong>
+                </a>
+                <a class="button is-light" href="#">
+                  Login
+                </a>
+              @endif
             </div>
           </div>
         </div>
@@ -105,7 +113,7 @@
             <div class="navbar-start cat-item">
 
               <a class="navbar-item" href="test.html">
-                Kraj
+                Kraj<img src="img/newshub.png" style="width:100%; height:3000%;">
               </a>
               <a class="navbar-item">
                 Zagranica

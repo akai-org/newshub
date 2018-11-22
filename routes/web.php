@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', "PostController@home");
-Route::get('/user', "PostController@user");
-Route::get('/user/{username}', "PostController@user");
-Route::get('/create', "PostController@create");
+Route::get('/', "HomeController@index");
+Route::get('/user', "HomeController@user");
+Route::get('/user/{username}', "HomeController@user");
+Route::get('/create', "HomeController@create");
 
-Route::post('/posts', "PostController@new_post");
+Route::post('/posts', "HomeController@new_post");
+
+Auth::routes();
