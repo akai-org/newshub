@@ -12,7 +12,7 @@
             <div class="forms-login">
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                        <input class="input" name="username" type="text" placeholder="Username">
+                        <input class="input" name="username" value="{{ old('username') }}" type="text" placeholder="Username">
                         <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                         </span>
@@ -51,7 +51,7 @@
             <div class="forms-register">
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                        <input class="input" name="email" type="email" placeholder="Email">
+                    <input class="input" name="email" type="email" value="{{ old('email') }}" placeholder="Email">
                         <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                         </span>
@@ -66,7 +66,7 @@
 
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                        <input class="input" name="username" type="text" placeholder="Username">
+                        <input class="input" name="username" value="{{ old('username') }}" type="text" placeholder="Username">
                         <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                         </span>
@@ -105,7 +105,7 @@
 
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                        <input class="input" name="firstname" type="text" placeholder="First name">
+                        <input class="input" name="firstname" value="{{ old('firstname') }}" type="text" placeholder="First name">
                         <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                         </span>
@@ -120,7 +120,7 @@
 
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                        <input class="input" name="lastname" type="text" placeholder="Last name">
+                        <input class="input" name="lastname" value="{{ old('lastname') }}" type="text" placeholder="Last name">
                         <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                         </span>
