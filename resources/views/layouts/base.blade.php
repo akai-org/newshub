@@ -79,14 +79,17 @@
               <a class="button is-light">
                   <strong>Dodaj wpis</strong>
               </a>
-                <a class="button is-danger">
-                    <strong>Wyloguj</strong>
-                </a>
+              <form method="POST" action="{{ url('logout') }}">
+                @csrf
+                <button class="button is-danger">
+                      <strong>Wyloguj</strong>
+                </button>
+              </form>
               @else
-                <a class="button is-primary">
+                <a href="{{ route('register') }}" class="button is-primary">
                   <strong>Rejestracja</strong>
                 </a>
-                <a class="button is-light" href="#">
+                <a href="{{ route('login') }}" class="button is-light">
                   Login
                 </a>
               @endif

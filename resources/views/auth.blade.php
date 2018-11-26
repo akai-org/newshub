@@ -1,7 +1,7 @@
 @extends('layouts/base')
 
 @section('content')
-    @include('layouts/login')
+    @include('layouts/auth_forms')
 @endsection
 
 @section('footer')
