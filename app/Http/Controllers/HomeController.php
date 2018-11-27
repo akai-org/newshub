@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -38,6 +39,22 @@ class HomeController extends Controller
     }
 
     public function new_post() {
-        return request()->all();
+        return view('new_post');
+    }
+
+    public function store_post(Request $request) {
+        $validated = $request->validate([
+            'title' => 'required|min:10',
+            'description' => 'required|min:10',
+            'url' => 'required|url|unique:posts'
+        ]);
+        $post = new Post();
+        $post->user_id = Auth::user()->user_id;
+        $post->title = $validated['title'];
+        $post->url = $validated['url'];
+        $post->description = $validated['description'];
+        $post->image = "https://www.wykop.pl/cdn/c2526412/no-picture,w207h139.jpg";
+        $post->saveOrFail();
+        return redirect("/");
     }
 }

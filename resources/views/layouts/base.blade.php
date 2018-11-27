@@ -47,12 +47,10 @@
 
         <div class="navbar-end">
 
-
           <div class="navbar-item has-dropdown is-hoverable" style="z-index:50;">
+            @if (isset(Auth::user()->username ))
             <a class="navbar-link">
-              @if (isset(Auth::user()->username ))
                 {{ Auth::user()->username }}
-              @endif
             </a>
 
             <div class="navbar-dropdown" style="z-index:31;">
@@ -70,14 +68,15 @@
                 Zgłoś błąd
               </a>
             </div>
+            @endif
           </div>
 
 
           <div class="navbar-item">
             <div class="buttons">
               @if (Auth::check())
-              <a class="button is-light">
-                  <strong>Dodaj wpis</strong>
+              <a href="{{ route("new_post") }}" class="button is-light">
+              <strong>Dodaj wpis</strong>
               </a>
               <form method="POST" action="{{ url('logout') }}">
                 @csrf

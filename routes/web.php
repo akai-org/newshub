@@ -15,7 +15,7 @@ Route::get('/', "HomeController@index")->name('index');
 Route::get('/user', "HomeController@user")->name('user');
 Route::get('/user/{username}', "HomeController@user");
 Route::get('/create', "HomeController@create");
-
-Route::post('/posts', "HomeController@new_post")->name("posts");
+Route::get('/new_post', "HomeController@new_post")->name('new_post')->middleware("auth");
+Route::post('/store_post', 'HomeController@store_post')->name('store_post')->middleware("auth");
 
 Auth::routes();
