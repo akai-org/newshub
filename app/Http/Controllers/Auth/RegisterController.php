@@ -74,6 +74,6 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('auth')->with('action', 'register');
+        return view('register');
     }
 }

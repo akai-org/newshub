@@ -45,7 +45,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth')->with('action', 'login');
+        return view('login');
     }
 
 
