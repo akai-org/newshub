@@ -30,8 +30,7 @@ class HomeController extends Controller
 
     public function user($username) {
         $user = User::where('username', $username)->get()->first();
-        $posts = $user->posts;
-        return view('user', ['user' => $user, 'posts' => $posts]);
+        return view('user_posts', ['user' => $user]);
     }
 
     public function create() {

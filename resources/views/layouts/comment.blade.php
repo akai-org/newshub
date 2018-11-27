@@ -1,23 +1,20 @@
 <div class="box">
     <article class="media">
         <div class="media-left">
-            <figure class="image is-256x256">
-                <img src="{{ $post->image }}" alt="Image" style="width:256px;">
+            <figure class="image is-64x64">
+                <img src="{{ $comment->user->image }}" alt="{{ $comment->user->username }}">
             </figure>
         </div>
         <div class="media-content">
             <div class="content">
                 <p>
-                    <strong><a href="{{ $post->url }}">{{ $post->title }}</a></strong>
+                    <strong><a href="{{ url('user/'.$comment->user->username) }}">{{ $comment->user->username }}</a></strong>
                     <br>
-                <small>Autor: <a href="{{ url('user/'.$post->user->username) }}">{{ $post->user->username }}</a> - {{ $post->user->comments->count() }} komentarzy - opublikowano {{ $post->created_at }}</small>
+                    {{ $comment->content }}
                 </p>
-                {{ $post->description }}
-
             </div>
             <nav class="level is-mobile">
                 <div class="level-left">
-                    {{--
                     <a class="level-item" aria-label="reply">
                         <span class="icon is-small">
                             <i class="fas fa-reply" aria-hidden="true"></i>
@@ -25,21 +22,13 @@
                     </a>
                     <a class="level-item" aria-label="retweet">
                         <span class="icon is-small">
-                            <i class="fas fa-comments" aria-hidden="true"></i>
+                            <i class="fas fa-retweet" aria-hidden="true"></i>
                         </span>
                     </a>
-                    --}}
                     <a class="level-item" aria-label="like">
                         <span class="icon is-small">
-                            <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+                            <i class="fas fa-heart" aria-hidden="true"></i>
                         </span>
-                        72
-                    </a>
-                    <a class="level-item" aria-label="unlike">
-                        <span class="icon is-small">
-                            <i class="fas fa-thumbs-down" aria-hidden="true"></i>
-                        </span>
-                        36
                     </a>
                 </div>
             </nav>

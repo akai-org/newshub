@@ -12,7 +12,7 @@
 */
 
 Route::get('/', "HomeController@index")->name('index');
-Route::get('/user', "HomeController@user");
+Route::get('/user', "HomeController@user")->name('user');
 Route::get('/user/{username}', "HomeController@user");
 Route::get('/create', "HomeController@create");
 
