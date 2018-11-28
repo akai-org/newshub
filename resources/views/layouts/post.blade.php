@@ -10,7 +10,7 @@
                 <p>
                     <strong><a href="{{ $post->url }}">{{ $post->title }}</a></strong>
                     <br>
-                <small>Autor: <a href="{{ url('user/'.$post->user->username) }}">{{ $post->user->username }}</a> - {{ $post->user->comments->count() }} komentarzy - opublikowano {{ $post->created_at }}</small>
+                <small>Autor: <a href="{{ url('user/'.$post->user->username) }}">{{ $post->user->username }}</a> - {{ $post->comments->count() }} komentarzy - opublikowano {{ $post->created_at }}</small>
                 </p>
                 {{ $post->description }}
 
