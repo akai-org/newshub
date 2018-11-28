@@ -35,7 +35,11 @@ DB_PASSWORD=qwerty123
 ```
 
 6. Wygeneruj klucz ```php artisan key:generate```
-7. Wykonaj migrację
+7. Instalujemy zależności
+```
+composer install
+```
+8. Wykonaj migrację
 ```
 php artisan migrate:fresh
 ```
