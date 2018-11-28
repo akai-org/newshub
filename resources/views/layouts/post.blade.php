@@ -33,13 +33,13 @@
                         <span class="icon is-small">
                             <i class="fas fa-thumbs-up" aria-hidden="true"></i>
                         </span>
-                        72
+                        {{ $post->votes->where("type", "plus")->count() }}
                     </a>
                     <a class="level-item" aria-label="unlike">
                         <span class="icon is-small">
                             <i class="fas fa-thumbs-down" aria-hidden="true"></i>
                         </span>
-                        36
+                        {{ $post->votes->where("type", "minus")->count() }}
                     </a>
                 </div>
             </nav>

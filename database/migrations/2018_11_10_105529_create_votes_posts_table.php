@@ -13,7 +13,7 @@ class CreateVotesPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('votes_post', function (Blueprint $table) {
+        Schema::create('votes_posts', function (Blueprint $table) {
             $table->increments('vote_id')->index();
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('users');
@@ -24,7 +24,7 @@ class CreateVotesPostsTable extends Migration
         });
 
         // Insert some stuff
-        DB::table('votes_post')->insert(
+        DB::table('votes_posts')->insert(
             array(
                 'post_id' => App\Post::first()->post_id,
                 'user_id' => App\User::first()->user_id,

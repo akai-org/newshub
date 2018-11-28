@@ -5,6 +5,12 @@
 </h1>
 <h2>{{ $user->username }}</h2>
 <p>Tutaj jeszcze damy jakiś króki opis usera. Lorem ipsum dolor sit amet vero fuga!</p>
-<a href="{{ url('user/'.$user->username.'/posts') }}">Posty</a>
-<a href="{{ url('user/'.$user->username.'/comments') }}">Komentarze</a>
-<a href="{{ url('user/'.$user->username.'/votes') }}">Głosy</a>
+<a href="{{ url('user/'.$user->username.'/posts') }}">
+    Posty ({{ $user->posts->count() }})
+</a>
+<a href="{{ url('user/'.$user->username.'/comments') }}">
+    Komentarze ({{ $user->comments->count() }})
+</a>
+<a href="{{ url('user/'.$user->username.'/votes') }}">
+    Plusy ({{ $user->votes_posts->where("type", "plus")->count() + $user->votes_comments->where("type", "plus")->count() }})
+</a>
