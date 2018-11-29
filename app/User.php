@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function votes_comments() {
         return $this->hasMany('App\VoteComment', 'user_id', 'user_id');
     }
+
+    public function addPost($attributes) {
+        return $this->posts()->create(compact("attributes"));
+    }
 }
