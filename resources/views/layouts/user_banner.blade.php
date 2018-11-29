@@ -54,17 +54,17 @@
 
       </ul>
     </div>
+    
 
     <div class="user-profile">
       <div class="level">
 
 
-        <div class="level-item " style="justify-content: left; align-self: flex-start; display:inline-block;">
+        <div class="level-item">
 
           <!--content wczytywany-->
-
-
-
+          
+  
 
 
         </div>

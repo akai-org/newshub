@@ -1,7 +1,7 @@
 @extends('layouts/base')
 
 @section('content')
-    @include('layouts/user_banner', $user);
+    @include('layouts/user_banner', $user)
     @foreach ($user->posts as $post)
         @include('layouts/post', ['post' => $post])
     @endforeach
