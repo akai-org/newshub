@@ -132,11 +132,7 @@
         </nav>
       </small>
 
-      
-      <section class="posts" style="margin-top:10px; margin-bottom:100px; margin-left:10px; margin-right:10px;">
-          @yield('content')
-      </section>
-
+      @yield('content')
     </div>
 
     @yield('footer')
