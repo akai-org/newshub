@@ -182,16 +182,60 @@
    display:block;
  
  }
- .user-logo{
-   width:150px;
-   height:150px;
-   max-width: 150px;
- 
-   display:block;
-   border-bottom:6px solid #dfe6e9;
- }
  
  section.profile{
    margin:0;
   
+ }
+ 
+ .content-header{
+   margin-bottom: 20px;
+ }
+ .tags{
+   margin-left: 5px;
+ }
+ 
+ .content-text{
+   margin-top:15px;
+ }
+ 
+ .post-img{
+   width:480px !important;
+   height:480px !important;
+ }
+ 
+ .user-logo{
+   width:150px;
+   height:150px;
+   margin: 25px 0px 0px 20px;
+   display: inline-block;
+ 
+   border:1px solid gray;
+   border-bottom-width: 3px;
+ 
+ }
+ 
+ 
+ .user-buttons{
+   display:inline-block;
+   float:right;
+   margin: 1rem;
+ }
+ 
+ a.button.social{
+   display:block;
+   margin: 5px;
+ }
+ a.button.social:last-child{
+   margin-bottom:0px;
+   margin-top:0px;
+ }
+ 
+ a.button.social:first-child{
+   margin-bottom:0px;
+   margin-top:0px;
+ }
+ 
+ .username{
+   margin-top:10px;
  }
