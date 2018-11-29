@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('post_id')->index();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->text('url');
             $table->text('image');
             $table->boolean('is_adult')->default(false);
