@@ -1,3 +1,4 @@
+<section id="post-comments">
 <div class="box">
     <article class="media">
         <div class="media-left">
@@ -35,3 +36,6 @@
         </div>
     </article>
 </div>
+
+
+</section>
