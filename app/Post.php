@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class Post extends Model
 {
     protected $table = 'posts';
+    protected $fillable = ['title', 'description', 'url', 'image', 'is_adult', 'is_visable'];
 
     public function user() {
         return $this->belongsTo('App\User', 'user_id');
@@ -35,5 +36,9 @@ class Post extends Model
             'user_id' => Auth::user()->user_id,
             'type' => $type,
         ]);
+    }
+
+    public function getUrl() {
+        return action("HomeController@post", ['id' => $this->post_id]);
     }
 }

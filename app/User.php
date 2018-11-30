@@ -48,6 +48,6 @@ class User extends Authenticatable
     }
 
     public function addPost($attributes) {
-        return $this->posts()->create(compact("attributes"));
+        return $this->posts()->create($attributes);
     }
 }
