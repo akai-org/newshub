@@ -10,7 +10,7 @@
                 <p>
                     <strong><a href="{{ $post->url }}">{{ $post->title }}</a></strong>
                     <br>
-                    <small>Autor: {{ $post->user->username }} - 43 komentarze - opublikowano {{ $post->created_at }}</small>
+                <small>Autor: <a href="{{ url('user/'.$post->user->username) }}">{{ $post->user->username }}</a> - {{ $post->comments->count() }} komentarzy - opublikowano {{ $post->created_at }}</small>
                 </p>
                 {{ $post->description }}
 
@@ -33,13 +33,13 @@
                         <span class="icon is-small">
                             <i class="fas fa-thumbs-up" aria-hidden="true"></i>
                         </span>
-                        72
+                        {{ $post->votes->where("type", "plus")->count() }}
                     </a>
                     <a class="level-item" aria-label="unlike">
                         <span class="icon is-small">
                             <i class="fas fa-thumbs-down" aria-hidden="true"></i>
                         </span>
-                        36
+                        {{ $post->votes->where("type", "minus")->count() }}
                     </a>
                 </div>
             </nav>
