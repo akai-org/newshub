@@ -45,12 +45,12 @@ class Post extends Model
         return $this->hasMany('App\VotePost', 'post_id', 'post_id');
     }
 
-    public function addComment($content, $is_adult=False, $is_visable=True) {
+    public function addComment($comment) {
         return $this->comments()->create([
             'user_id' => Auth::user()->user_id,
-            'content' => $content,
-            'is_adult' => $is_adult,
-            'is_visable' => $is_visable,
+            'content' => $comment['content'],
+            'is_adult' => $comment['is_adult'],
+            'is_visable' => $comment['is_visable'],
         ]);
     }
 
@@ -62,6 +62,7 @@ class Post extends Model
     }
 
     public function getUrl() {
-        return action("HomeController@post", ['slug' => $this->slug]);
+        //return action("PostController@show", ['slug' => $this->slug]);
+        return route('post', ['slug' => $this->slug]);
     }
 }
