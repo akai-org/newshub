@@ -25,13 +25,13 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('comments')->insert(
-            array(
-                'content' => 'Eius maxime deleniti iure facere quidem et. Saepe saepe et repellat dolor nulla aut et. Atque iste dolor sequi reiciendis maxime vel in. Soluta beatae porro quia. Dolores animi quam fuga qui. ',
-                'user_id' => App\User::first()->user_id,
-                'post_id' => App\Post::first()->post_id
-            )
-        );
+        // DB::table('comments')->insert(
+        //     array(
+        //         'content' => 'Eius maxime deleniti iure facere quidem et. Saepe saepe et repellat dolor nulla aut et. Atque iste dolor sequi reiciendis maxime vel in. Soluta beatae porro quia. Dolores animi quam fuga qui. ',
+        //         'user_id' => App\User::first()->user_id,
+        //         'post_id' => App\Post::first()->post_id
+        //     )
+        // );
     }
 
     /**

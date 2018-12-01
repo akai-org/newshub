@@ -24,13 +24,13 @@ class CreateVotesCommentsTable extends Migration
         });
 
         // Insert some stuff
-        DB::table('votes_comments')->insert(
-            array(
-                'comment_id' => App\Comment::first()->post_id,
-                'user_id' => App\User::first()->user_id,
-                'type' => 'plus',
-            )
-        );
+        // DB::table('votes_comments')->insert(
+        //     array(
+        //         'comment_id' => App\Comment::first()->post_id,
+        //         'user_id' => App\User::first()->user_id,
+        //         'type' => 'plus',
+        //     )
+        // );
     }
 
     /**

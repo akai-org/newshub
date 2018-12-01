@@ -30,14 +30,14 @@ class CreateUsersTable extends Migration
         });
 
          // Insert some stuff
-         DB::table('users')->insert(
-            array(
-                'username' => 'admin',
-                'email' => 'admin@admin.pl',
-                'image' => 'https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png',
-                'password' => Hash::make('qwerty123'),
-            )
-        );
+        //  DB::table('users')->insert(
+        //     array(
+        //         'username' => 'admin',
+        //         'email' => 'admin@admin.pl',
+        //         'image' => 'https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png',
+        //         'password' => Hash::make('qwerty123'),
+        //     )
+        // );
     }
 
     /**

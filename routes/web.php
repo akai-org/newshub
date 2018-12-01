@@ -18,7 +18,7 @@ Route::get('/user/{username}/posts', "HomeController@user");
 Route::get('/create', "HomeController@create");
 Route::get('/new_post', "HomeController@new_post")->name('new_post')->middleware("auth");
 Route::post('/store_post', 'HomeController@store_post')->name('store_post')->middleware("auth");
-Route::get('/post/{id}', "HomeController@post")->name('post');
+Route::get('/post/{slug}', "HomeController@post")->name('post');
 
 // Route::resource('posts', 'PostController')->only(['store', 'update', 'destroy']);
 
