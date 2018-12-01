@@ -1,5 +1,7 @@
 @extends('layouts/base')
 
+@section('title', 'Użytkownik ' . $user->username . ' - Głosy')
+
 @section('content')
     @include('layouts/user_banner', $user);
     @foreach ($user->posts as $post)
