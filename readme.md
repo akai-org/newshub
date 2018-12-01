@@ -33,13 +33,20 @@ DB_DATABASE=newshub
 DB_USERNAME=laravel
 DB_PASSWORD=qwerty123
 ```
-
-6. Wygeneruj klucz ```php artisan key:generate```
-7. Wykonaj migrację
+6. Zainstaluj zależności
+```
+composer install
+```
+7. Wygeneruj klucz ```php artisan key:generate```
+8. Wykonaj migrację
 ```
 php artisan migrate:fresh
 ```
 **Uwaga! To polecenie wyczyści całą dotychczasową zawartość bazy danych i utworzy tabele na nowo.**
 
-8. Uruchom aplikację poleceniem ``` php artisan serve ```
-9. Wejdź pod adres [localhost:8000](http://localhost:8000) i korzystaj z aplikacji.
+9. (opcjonalne) Wypełnij bazę danych przykładowymi danymi
+```
+php artisan db:seed
+```
+10. Uruchom aplikację poleceniem ``` php artisan serve ```
+11. Wejdź pod adres [localhost:8000](http://localhost:8000) i korzystaj z aplikacji.
