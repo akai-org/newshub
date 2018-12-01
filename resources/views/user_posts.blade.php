@@ -5,7 +5,7 @@
 @section('content')
     @include('layouts/user_banner', $user)
     @foreach ($user->posts as $post)
-        @include('layouts/post', ['post' => $post])
+        @include('layouts/post', ['post' => $post, 'url' => $post->getUrl()])
     @endforeach
 @endsection
 
