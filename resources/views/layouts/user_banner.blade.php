@@ -57,19 +57,9 @@
     
 
     <div class="user-profile">
-      <div class="level">
-
-
-        <div class="level-item">
-
-          <!--content wczytywany-->
-          
-  
-
-
-        </div>
-
-      </div>
+      @foreach ($user->posts as $post)
+        @include('layouts/post', ['post' => $post, 'url' => $post->getUrl()])
+      @endforeach
 
     </div>
 
