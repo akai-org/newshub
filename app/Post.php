@@ -16,8 +16,17 @@ class Post extends Model
 
         static::saving(function ($post) {
             $slug = str_slug($post->title);
+            if (strlen($slug)>60) {
+                $slug = substr(str_slug($post->title),0,60);
+                if (substr($slug, -1)=='-') $slug = substr($slug,0,-1);
+            }
             while (Post::select('slug')->where(['slug' => $slug])->get()->first()!=null) {
-                $slug = str_slug($post->title) . "-" . rand();
+                if (strlen(str_slug($post->title))>60) {
+                    $slug = substr(str_slug($post->title),0,60) . "-" . rand();
+                } else {
+                    $slug = str_slug($post->title) . "-" . rand();
+                }
+                $slug = str_replace('--', '-', $slug);
             }
             $post->slug = $slug;
         });
