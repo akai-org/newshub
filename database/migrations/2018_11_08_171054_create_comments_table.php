@@ -22,7 +22,8 @@ class CreateCommentsTable extends Migration
             $table->string('content');
             $table->boolean('is_adult')->default(false);
             $table->boolean('is_visable')->default(true);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
 
         // DB::table('comments')->insert(

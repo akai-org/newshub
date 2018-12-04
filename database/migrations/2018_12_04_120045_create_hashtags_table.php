@@ -14,11 +14,12 @@ class CreateHashtagsTable extends Migration
     public function up()
     {
         Schema::create('hashtags', function (Blueprint $table) {
-            $table->text('name', 60)->index();
+            $table->string('name')->index();
             $table->text('image')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('user_id')->on('users');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

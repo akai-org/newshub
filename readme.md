@@ -44,16 +44,12 @@ php artisan migrate:fresh
 ```
 **Uwaga! To polecenie wyczyści całą dotychczasową zawartość bazy danych i utworzy tabele na nowo.**
 
-9. Wygeneruj konto admina
-```
-php artisan db:seed --class=AdminUserSeeder
-```
-10. (opcjonalne) Wypełnij bazę danych przykładowymi danymi
+9. (opcjonalne) Wypełnij bazę danych przykładowymi danymi
 ```
 php artisan db:seed
 ```
-11. Uruchom aplikację poleceniem ``` php artisan serve ```
-12. Wejdź pod adres [localhost:8000](http://localhost:8000) i korzystaj z aplikacji.
+10. Uruchom aplikację poleceniem ``` php artisan serve ```
+11. Wejdź pod adres [localhost:8000](http://localhost:8000) i korzystaj z aplikacji.
 
 #### Domyślne konto administratora
 Username: _admin_
