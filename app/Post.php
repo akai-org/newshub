@@ -65,4 +65,12 @@ class Post extends Model
         //return action("PostController@show", ['slug' => $this->slug]);
         return route('post', ['slug' => $this->slug]);
     }
+
+    public function jquery_comments() {
+        $json = "";
+        foreach ($this->comments as $comment) {
+            $json .= $comment->jquery_comment() . ", ";
+        }
+        return $json;
+    }
 }

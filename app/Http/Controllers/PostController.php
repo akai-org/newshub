@@ -66,6 +66,7 @@ class PostController extends Controller
         if ($comment) {
             $attributes['comment'] = $comment->comment_id;
         }
+
         return view("post", $attributes);
     }
 
