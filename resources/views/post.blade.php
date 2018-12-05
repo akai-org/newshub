@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script type="text/javascript" src="{{ asset('js/jquery-comments.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/moment-with-locales.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.textcomplete.min.js') }} "></script>
 @endsection
 
 @section('content')

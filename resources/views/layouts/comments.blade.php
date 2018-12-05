@@ -9,6 +9,7 @@ $('#post-comments').comments({
         readOnly: true,
     @endif
     enableHashtags: true,
+    enablePinging: true,
     textareaPlaceholderText: 'Napisz komentarz',
     newestText: 'Najnowsze',
     oldestText: 'Najstarsze',
