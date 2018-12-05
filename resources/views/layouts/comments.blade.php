@@ -1,6 +1,7 @@
 <section id="post-comments">
 </section>
 <script>
+moment.locale('pl');
 $('#post-comments').comments({
     @if (Auth::check())
         profilePictureURL: '{{ Auth::user()->image }}',
@@ -25,6 +26,10 @@ $('#post-comments').comments({
     noCommentsText: 'Brak komentarzy',
     noAttachmentsText: 'Brak załączników',
     attachmentDropText: 'Upuść tutaj',
+    timeFormatter: function(time) {
+        return moment(time).fromNow();
+    },
+
     getComments: function(success, error) {
         var commentsArray = [
             {!! $post->jquery_comments() !!}
