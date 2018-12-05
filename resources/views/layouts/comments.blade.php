@@ -69,6 +69,18 @@ $('#post-comments').comments({
             },
             error: error
         });
+    },
+    putComment: function(commentJSON, success, error) {
+        $.ajax({
+            //TODO: post na put
+            type: 'post',
+            url: '/post/{{ $post->slug }}/comment/' + commentJSON.id,
+            data: commentJSON,
+            success: function(comment) {
+                success(comment)
+            },
+            error: error
+        });
     }
 });
 

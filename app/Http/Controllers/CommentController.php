@@ -45,7 +45,9 @@ class CommentController extends Controller
         $data['is_visable'] = true;
         $data['fullname'] = Auth::user()->username;
         $comment = $post->addComment($data);
-        return response()->json($comment->jquery_comment());
+        $return = $comment->jquery_comment();
+        $return['is_new'] = true;
+        return response()->json($return);
     }
 
     /**
