@@ -4,10 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+
+    public function show(Request $request, Post $post) {
+        $array = [];
+        foreach ($post->comments as $comment) {
+            array_push($array, $comment->jquery_comment());
+        }
+        return response()->json($array);
+    }
+
+    public function users(Request $request) {
+        $array = [];
+        foreach (User::all() as $user) {
+            array_push($array, $user->jquery_comments());
+        }
+        return response()->json($array);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -16,12 +35,17 @@ class CommentController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        $validated = $request->validate([
+        $data = $request->validate([
             'content' => 'required|filled',
-            'vote_id' => 'exists:comments',
+            //'vote_id' => 'exists:comments',
         ]);
-        $comment = $post->addComment($validated);
-        return route('post', ['slug' => $post->slug, 'comment' => $comment->comment_id]);
+        $data['user_id'] = Auth::user()->user_id;
+        $data['post_id'] = $post->post_id;
+        $data['is_adult'] = false;
+        $data['is_visable'] = true;
+        $data['fullname'] = Auth::user()->username;
+        $comment = $post->addComment($data);
+        return response()->json($comment->jquery_comment());
     }
 
     /**

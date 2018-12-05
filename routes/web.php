@@ -26,15 +26,17 @@ Route::get('/user/{username}', "PostController@user")->name('user_posts');
 Route::get('/user/{username}/posts', "PostController@user");
 Route::get('/create', "PostController@create")->name('new_post');
 Route::post('/create', "PostController@store")->name('store_post')->middleware("auth");
-Route::get('/post/{slug}', "PostController@show")->name('post');
-Route::get('/post/{slug}#{comment}', "PostController@show")->name('post_comment');
-Route::put('/post/{slug}', "PostController@update")->middleware("admin");
-Route::delete('/post/{slug}', "PostController@destroy")->middleware("admin");
+Route::get('/post/{post}', "PostController@show")->name('post');
+Route::get('/post/{post}#{comment}', "PostController@show")->name('post_comment');
+Route::put('/post/{post}', "PostController@update")->middleware("admin");
+Route::delete('/post/{post}', "PostController@destroy")->middleware("admin");
 
 //Comments
 Route::get('/user/{username}/comments', "CommentController@user")->name('user_posts');
-Route::post('/post/{slug}/comment', "CommentController@store")->middleware('auth');
-Route::put('/post/{slug}/comment/{id}', "CommentController@update")->middleware('auth');
-Route::delete('/post/{slug}/comment/{id}', "CommentController@destroy")->middleware('auth');
+Route::get('/post/{post}/comments', "CommentController@show")->name('post_comments');
+Route::post('/post/{post}/comment', "CommentController@store")->name("new_comment")->middleware('auth');
+Route::put('/post/{post}/comment/{id}', "CommentController@update")->middleware('auth');
+Route::delete('/post/{post}/comment/{id}', "CommentController@destroy")->middleware('auth');
+Route::get('/users', "CommentController@users")->name('users');
 
 Auth::routes();

@@ -21,9 +21,8 @@ class PostController extends Controller
         return view('posts', ['posts' => $posts]);
     }
     
-    public function user($username) {
-        $user = User::where('username', $username)->get()->first();
-        return view('user_posts', ['user' => $user]);
+    public function user(Request $request, User $username) {
+        return view('user_posts', ['user' => $username]);
     }
 
     /**
@@ -60,9 +59,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug, Comment $comment)
+    public function show(Post $post, Comment $comment)
     {
-        $post = Post::where(['slug' => $slug])->first();
         $attributes = ['post' => $post];
         if ($comment) {
             $attributes['comment'] = $comment->comment_id;
@@ -78,14 +76,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, Post $post)
     {
         $attributes = $request->validate([
             'title' => 'required|min:10|max:200',
             'description' => 'required|min:10',
             'url' => 'required|url|unique:posts'
         ]);
-        Post::where(['slug' => $slug])->update($attributes);
+        $post->update($attributes);
     }
 
     /**
@@ -94,8 +92,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($post)
     {
-        Post::find(['slug' => $slug])->delete();
+        $post->delete();
     }
 }

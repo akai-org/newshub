@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+
+    protected $fillable = ['content', 'post_id', 'user_id', 'is_visable', 'is_adult'];
+
     public function user() {
         return $this->belongsTo('App\User', 'user_id', 'user_id');
     }
@@ -35,6 +38,7 @@ class Comment extends Model
             //upvote_count             // Required if upvoting is enabled
             //user_has_upvoted          // Required if upvoting is enabled
         ];
-        return json_encode($array, JSON_UNESCAPED_SLASHES);
+        //return json_encode($array, JSON_UNESCAPED_SLASHES);
+        return $array;
     }
 }

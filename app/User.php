@@ -31,6 +31,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
     public function posts() {
         return $this->hasMany('App\Post', 'user_id');
     }
@@ -49,5 +59,15 @@ class User extends Authenticatable
 
     public function addPost($attributes) {
         return $this->posts()->create($attributes);
+    }
+
+    public function jquery_comments() {
+        $array = [
+            'id' => $this->user_id,
+            'fullname' => $this->username,
+            'email' => $this->email,
+            'profile_picture_url' => $this->image,
+        ];
+        return $array;
     }
 }
