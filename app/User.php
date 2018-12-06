@@ -65,9 +65,12 @@ class User extends Authenticatable
         $array = [
             'id' => $this->user_id,
             'fullname' => $this->username,
-            'email' => $this->email,
+            //'email' => $this->email,
             'profile_picture_url' => $this->image,
         ];
+        if ($this->firstname && $this->lastname) {
+            $array['email'] = $this->firstname . " " . $this->lastname;
+        }
         return $array;
     }
 }
