@@ -14,7 +14,11 @@ class CommentController extends Controller
     public function show(Request $request, Post $post) {
         $array = [];
         foreach ($post->comments as $comment) {
-            array_push($array, $comment->jquery_comment());
+            $next = $comment->jquery_comment();
+            if (Auth::user()==$comment->user) {
+                $next['created_by_current_user'] = true;
+            }
+            array_push($array, $next);
         }
         return response()->json($array);
     }
@@ -47,6 +51,7 @@ class CommentController extends Controller
         $comment = $post->addComment($data);
         $return = $comment->jquery_comment();
         $return['is_new'] = true;
+        $return['created_by_current_user'] = true;
         return response()->json($return);
     }
 
@@ -59,7 +64,14 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        if ($comment->user==Auth::user() || Auth::user()->is_admin==true) {
+            $attributes = $request->validate([
+                'content' => 'required|filled',
+            ]);
+            $comment->update($attributes);
+            return response()->json($comment->jquery_comment());
+        }
+        return false;
     }
 
     /**
@@ -70,6 +82,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        if ($comment->user==Auth::user() || Auth::user()->is_admin==true) {
+            return response()->json($comment->delete());
+        }
     }
 }

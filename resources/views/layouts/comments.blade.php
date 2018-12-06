@@ -5,6 +5,9 @@ moment.locale('pl');
 $('#post-comments').comments({
     @if (Auth::check())
         profilePictureURL: '{{ Auth::user()->image }}',
+        @if (Auth::user()->is_admin)
+            currentUserIsAdmin: true,
+        @endif
     @else 
         readOnly: true,
     @endif
@@ -72,13 +75,23 @@ $('#post-comments').comments({
     },
     putComment: function(commentJSON, success, error) {
         $.ajax({
-            //TODO: post na put
-            type: 'post',
-            url: '/post/{{ $post->slug }}/comment/' + commentJSON.id,
+            type: 'put',
+            url: '/comment/' + commentJSON.id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: commentJSON,
             success: function(comment) {
                 success(comment)
             },
+            error: error
+        });
+    },
+    deleteComment: function(commentJSON, success, error) {
+        $.ajax({
+            type: 'delete',
+            url: '/comment/' + commentJSON.id,
+            success: success,
             error: error
         });
     }
