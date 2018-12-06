@@ -90,6 +90,9 @@ $('#post-comments').comments({
     deleteComment: function(commentJSON, success, error) {
         $.ajax({
             type: 'delete',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             url: '/comment/' + commentJSON.id,
             success: success,
             error: error
