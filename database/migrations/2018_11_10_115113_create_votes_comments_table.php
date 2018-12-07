@@ -20,8 +20,6 @@ class CreateVotesCommentsTable extends Migration
             $table->unsignedInteger('comment_id');
             $table->foreign('comment_id')->references('comment_id')->on('comments')->onDelete('cascade');
             $table->enum('type', ['plus', 'minus']);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
         });
 
         // Insert some stuff

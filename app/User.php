@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     public function jquery_comments() {
         $array = [
-            'id' => $this->user_id,
+            'id' => $this->username,
             'fullname' => $this->username,
             //'email' => $this->email,
             'profile_picture_url' => $this->image,
