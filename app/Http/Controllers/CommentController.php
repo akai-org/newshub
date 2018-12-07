@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Post;
 use App\User;
+use App\VoteComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,9 +16,14 @@ class CommentController extends Controller
         $array = [];
         foreach ($post->comments as $comment) {
             $next = $comment->jquery_comment();
-            if (Auth::user()==$comment->user) {
-                $next['created_by_current_user'] = true;
-            }
+            if (Auth::check()) {
+                if (Auth::user()==$comment->user) {
+                    $next['created_by_current_user'] = true;
+                }
+                if ($comment->votes->where('user_id', Auth::user()->user_id)->first()) {
+                    $next['user_has_upvoted'] = true;
+                }
+            }  
             array_push($array, $next);
         }
         return response()->json($array);
@@ -89,5 +95,18 @@ class CommentController extends Controller
                 return response()->json(['success' => false]);
             }
         }
+    }
+
+    public function vote(Comment $comment) {
+        if ($vote = Auth::user()->votes_comments->where('comment_id', $comment->comment_id)->first()) {
+            $vote->delete();            
+        } else {
+            VoteComment::create([
+                'user_id' => Auth::user()->user_id,
+                'comment_id' => $comment->comment_id,
+                'type' => 'plus',
+            ]);
+        }
+        return response()->json($comment->jquery_comment());
     }
 }

@@ -103,6 +103,19 @@ $('#post-comments').comments({
             },
             error: error
         });
+    },
+    upvoteComment: function(commentJSON, success, error) {
+        $.ajax({
+            type: 'post',
+            url: '/comment/' + commentJSON.id + '/vote',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(comment) {
+                success(comment)
+            },
+            error: error
+        });
     }
 });
 

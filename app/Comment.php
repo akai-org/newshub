@@ -36,8 +36,7 @@ class Comment extends Model
             //isNew                   // Optional
             //created_by_admin          // Optional
             //created_by_current_user    // Required if editing is enabled
-            //upvote_count             // Required if upvoting is enabled
-            //user_has_upvoted          // Required if upvoting is enabled
+            'upvote_count' => $this->votes()->where(['type' => 'plus'])->count(),
         ];
         //return json_encode($array, JSON_UNESCAPED_SLASHES);
         return $array;

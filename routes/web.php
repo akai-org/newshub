@@ -38,5 +38,6 @@ Route::post('/post/{post}/comment', "CommentController@store")->name("new_commen
 Route::put('/comment/{comment}', "CommentController@update")->middleware('auth');
 Route::delete('/comment/{comment}', "CommentController@destroy")->middleware('auth');
 Route::get('/users', "CommentController@users")->name('users');
+Route::post('/comment/{comment}/vote', "CommentController@vote")->name("vote_comment")->middleware('auth');
 
 Auth::routes();
