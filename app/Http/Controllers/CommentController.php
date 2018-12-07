@@ -83,7 +83,11 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         if ($comment->user==Auth::user() || Auth::user()->is_admin==true) {
-            return response()->json($comment->delete());
+            if ($comment->delete()) {
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['success' => false]);
+            }
         }
     }
 }

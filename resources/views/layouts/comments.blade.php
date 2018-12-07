@@ -94,7 +94,13 @@ $('#post-comments').comments({
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             url: '/comment/' + commentJSON.id,
-            success: success,
+            success: function(data) {
+                if (data.success) {
+                    success();
+                } else {
+                    error();
+                }
+            },
             error: error
         });
     }
