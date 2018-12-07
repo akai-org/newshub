@@ -20,7 +20,7 @@ class Post extends Model
                 $slug = substr(str_slug($post->title),0,60);
                 if (substr($slug, -1)=='-') $slug = substr($slug,0,-1);
             }
-            while (Post::select('slug')->where(['slug' => $slug])->get()->first()!=null) {
+            while (Post::select('slug')->where('slug', $slug)->get()->first()!=null) {
                 if (strlen(str_slug($post->title))>60) {
                     $slug = substr(str_slug($post->title),0,60) . "-" . rand();
                 } else {
