@@ -20,6 +20,7 @@ class CreateVotesPostsTable extends Migration
             $table->unsignedInteger('post_id');
             $table->foreign('post_id')->references('post_id')->on('posts')->onDelete('cascade');
             $table->enum('type', ['plus', 'minus']);
+            $table->timestamps();
         });
 
         // Insert some stuff
