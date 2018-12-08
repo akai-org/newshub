@@ -55,12 +55,8 @@ class Post extends Model
     }
 
     public function addComment($comment) {
-        return $this->comments()->create([
-            'user_id' => Auth::user()->user_id,
-            'content' => $comment['content'],
-            'is_adult' => $comment['is_adult'],
-            'is_visable' => $comment['is_visable'],
-        ]);
+        $comment['user_id'] = Auth::user()->user_id;
+        return $this->comments()->create($comment);
     }
 
     public function addVote($type) {

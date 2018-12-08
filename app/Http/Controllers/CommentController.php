@@ -47,8 +47,10 @@ class CommentController extends Controller
     {
         $data = $request->validate([
             'content' => 'required|filled',
-            //'vote_id' => 'exists:comments',
+            'parent' => 'nullable',
+            'parent' => 'exists:comments,comment_id',
         ]);
+        $data['parent_id'] = $request['parent'];
         $data['user_id'] = Auth::user()->user_id;
         $data['post_id'] = $post->post_id;
         $data['is_adult'] = false;

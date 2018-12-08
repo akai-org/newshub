@@ -13,6 +13,7 @@ $('#post-comments').comments({
     @endif
     enableHashtags: true,
     enablePinging: true,
+    enableDeletingCommentWithReplies: false,
     textareaPlaceholderText: 'Napisz komentarz',
     newestText: 'Najnowsze',
     oldestText: 'Najstarsze',
