@@ -38,6 +38,7 @@ DB_PASSWORD=qwerty123
 composer install
 ```
 7. Wygeneruj klucz ```php artisan key:generate```
+
 8. Wykonaj migrację
 ```
 php artisan migrate:fresh
