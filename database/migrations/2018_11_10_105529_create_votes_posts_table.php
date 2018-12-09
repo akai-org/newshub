@@ -24,13 +24,13 @@ class CreateVotesPostsTable extends Migration
         });
 
         // Insert some stuff
-        DB::table('votes_posts')->insert(
-            array(
-                'post_id' => App\Post::first()->post_id,
-                'user_id' => App\User::first()->user_id,
-                'type' => 'plus',
-            )
-        );
+        // DB::table('votes_posts')->insert(
+        //     array(
+        //         'post_id' => App\Post::first()->post_id,
+        //         'user_id' => App\User::first()->user_id,
+        //         'type' => 'plus',
+        //     )
+        // );
     }
 
     /**

@@ -37,8 +37,8 @@
     <h3 class="username is-size-3" style="display:inline-block;">{{$user->username }}</h3> 
     <small style="margin-left:10px;">
     
-    @if (!empty($user->firstname)) $user->firstname @endif
-    @if (!empty($user->lastname)) $user->lastname @endif 
+    @if (!empty($user->firstname)) {{ $user->firstname }} @endif
+    @if (!empty($user->lastname)) {{ $user->lastname }} @endif 
     </small>
     <p>Tutaj jeszcze damy jakiś króki opis usera. Lorem ipsum dolor sit amet vero fuga!</p>
 
@@ -57,19 +57,9 @@
     
 
     <div class="user-profile">
-      <div class="level">
-
-
-        <div class="level-item">
-
-          <!--content wczytywany-->
-          
-  
-
-
-        </div>
-
-      </div>
+      @foreach ($user->posts as $post)
+        @include('layouts/post', ['post' => $post, 'url' => $post->getUrl()])
+      @endforeach
 
     </div>
 

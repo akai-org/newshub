@@ -8,14 +8,15 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'NewsHub') }}</title>
+  <title>@yield('title') - {{ config('app.name', 'NewsHub') }}</title>
 
   <!-- Styles -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
-  
+
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  @yield('head')
 </head>
 
 <body>
@@ -115,7 +116,7 @@
             <div class="navbar-start cat-item">
 
               <a class="navbar-item" href="test.html">
-                Kraj<img src="img/newshub.png" style="width:100%; height:3000%;">
+                Kraj
               </a>
               <a class="navbar-item">
                 Zagranica
@@ -131,7 +132,6 @@
           </div>
         </nav>
       </small>
-
       @yield('content')
     </div>
 

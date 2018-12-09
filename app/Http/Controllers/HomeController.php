@@ -43,18 +43,18 @@ class HomeController extends Controller
     }
 
     public function store_post(Request $request) {
-        $validated = $request->validate([
-            'title' => 'required|min:10',
+        $attributes = $request->validate([
+            'title' => 'required|min:10|max:200',
             'description' => 'required|min:10',
             'url' => 'required|url|unique:posts'
         ]);
-        $post = new Post();
-        $post->user_id = Auth::user()->user_id;
-        $post->title = $validated['title'];
-        $post->url = $validated['url'];
-        $post->description = $validated['description'];
-        $post->image = "https://www.wykop.pl/cdn/c2526412/no-picture,w207h139.jpg";
-        $post->saveOrFail();
+        $attributes['image'] = "https://www.wykop.pl/cdn/c2526412/no-picture,w207h139.jpg";
+        Auth::user()->addPost($attributes);
         return redirect("/");
+    }
+
+    public function post($slug) {
+        $post = Post::where('slug', $slug)->first();
+        return view("post", ['post' => $post]);
     }
 }

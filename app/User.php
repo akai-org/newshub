@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'firstname', 'lastname'
+        'username', 'email', 'password', 'firstname', 'lastname', 'is_admin', 'is_locked'
     ];
 
     /**
@@ -30,6 +30,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 
     public function posts() {
         return $this->hasMany('App\Post', 'user_id');
@@ -48,6 +58,19 @@ class User extends Authenticatable
     }
 
     public function addPost($attributes) {
-        return $this->posts()->create(compact("attributes"));
+        return $this->posts()->create($attributes);
+    }
+
+    public function jquery_comments() {
+        $array = [
+            'id' => $this->username,
+            'fullname' => $this->username,
+            //'email' => $this->email,
+            'profile_picture_url' => $this->image,
+        ];
+        if ($this->firstname && $this->lastname) {
+            $array['email'] = $this->firstname . " " . $this->lastname;
+        }
+        return $array;
     }
 }

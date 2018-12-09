@@ -8,6 +8,8 @@ class VotePost extends Model
 {
     protected $table = 'votes_posts';
 
+    protected $primaryKey = 'vote_id';
+
     public function post() {
         return $this->belongsTo('\App\Post', 'post_id', 'post_id');
     }

@@ -1,5 +1,7 @@
 @extends('layouts/base')
 
+@section('title', 'Rejestracja')
+
 @section('content')
     @include('layouts/register_form')
 @endsection

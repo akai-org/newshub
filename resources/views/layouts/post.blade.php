@@ -8,7 +8,12 @@
         <div class="media-content">
             <div class="content">
                 <p>
-                    <strong><a href="{{ $post->url }}">{{ $post->title }}</a></strong>
+                    @php
+                        if (!isset($url)) {
+                            $url = $post->url;
+                        }
+                    @endphp
+                    <strong><a href="{{ $url }}">{{ $post->title }}</a></strong>
                     <br>
                 <small>Autor: <a href="{{ url('user/'.$post->user->username) }}">{{ $post->user->username }}</a> - {{ $post->comments->count() }} komentarzy - opublikowano {{ $post->created_at }}</small>
                 </p>
