@@ -7,6 +7,7 @@ use App\Post;
 use App\User;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
+use App\VotePost;
 
 class PostController extends Controller
 {
@@ -95,5 +96,18 @@ class PostController extends Controller
     public function destroy($post)
     {
         $post->delete();
+    }
+
+    public function vote(Request $request, Post $post) {
+        if ($vote = Auth::user()->votes_posts->where('post_id', $post->post_id)->first()) {
+            $vote->type = $request->type;
+            return $vote->save();
+        } else {
+            return VotePost::create([
+                'user_id' => Auth::user()->user_id,
+                'post_id' => $post->post_id,
+                'type' => $request->type,
+            ]);
+        }
     }
 }

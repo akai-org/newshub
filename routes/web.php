@@ -26,6 +26,7 @@ Route::get('/user/{username}', "PostController@user")->name('user_posts');
 Route::get('/user/{username}/posts', "PostController@user");
 Route::get('/create', "PostController@create")->name('new_post');
 Route::post('/create', "PostController@store")->name('store_post')->middleware("auth");
+Route::post('/post/vote', "PostController@vote")->name('vote_post')->middleware("auth");
 Route::get('/post/{post}', "PostController@show")->name('post');
 Route::get('/post/{post}#{comment}', "PostController@show")->name('post_comment');
 Route::put('/post/{post}', "PostController@update")->middleware("admin");
