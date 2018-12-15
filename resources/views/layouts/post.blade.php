@@ -34,13 +34,13 @@
                         </span>
                     </a>
                     --}}
-                    <a class="level-item" aria-label="like">
+                <a class="level-item" aria-label="like" id="up{{ $post->slug }}" onclick="upVotePost('{{ $post->slug }}')">
                         <span class="icon is-small">
                             <i class="fas fa-thumbs-up" aria-hidden="true"></i>
                         </span>
                         {{ $post->votes->where("type", "plus")->count() }}
                     </a>
-                    <a class="level-item" aria-label="unlike">
+                    <a class="level-item" aria-label="unlike" id="down{{ $post->slug }}" onclick="downVotePost('{{ $post->slug }}')">
                         <span class="icon is-small">
                             <i class="fas fa-thumbs-down" aria-hidden="true"></i>
                         </span>

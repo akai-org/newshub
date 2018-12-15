@@ -100,14 +100,13 @@ class PostController extends Controller
 
     public function vote(Request $request, Post $post) {
         if ($vote = Auth::user()->votes_posts->where('post_id', $post->post_id)->first()) {
-            $vote->type = $request->type;
-            return $vote->save();
+            return $vote->update(['type' => $request->type]);
         } else {
-            return VotePost::create([
-                'user_id' => Auth::user()->user_id,
-                'post_id' => $post->post_id,
-                'type' => $request->type,
-            ]);
+            $newVote = new VotePost();
+            $newVote->user_id = Auth::user()->user_id;
+            $newVote->post_id = $post->post_id;
+            $newVote->type = $request->type;
+            return $newVote->save();
         }
     }
 }
