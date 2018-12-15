@@ -7,11 +7,18 @@
     <script type="text/javascript" src="{{ asset('js/jquery-comments.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/moment-with-locales.js') }} "></script>
     <script type="text/javascript" src="{{ asset('js/jquery.textcomplete.min.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('js/voting-posts.js') }} "></script>
 @endsection
 
 @section('content')
     <section class="posts" style="margin-top:10px; margin-bottom:100px; margin-left:10px; margin-right:10px;">
-        @include('layouts/post', ['post' => $post])
+        @if (Auth::check())
+            @if ($vote = $post->votes->firstWhere('user_id', Auth::user()->user_id))
+                @include('layouts/post', ['post' => $post, 'selected' => $vote->type])
+            @else
+                @include('layouts/post', ['post' => $post])
+            @endif
+        @endif
     </section>
     {{-- @foreach ($post->comments as $comment)
         @include('layouts/comment', ['comment' => $comment])

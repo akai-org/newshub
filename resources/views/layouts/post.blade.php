@@ -12,6 +12,12 @@
                         if (!isset($url)) {
                             $url = $post->url;
                         }
+                        $colorPlus = "#b6a7a8";
+                        $colorMinus = "#b6a7a8";
+                        if (isset($selected)) {
+                            if ($selected=="plus") $colorPlus = "black";
+                            if ($selected=="minus") $colorMinus = "black";
+                        }
                     @endphp
                     <strong><a href="{{ $url }}">{{ $post->title }}</a></strong>
                     <br>
@@ -34,17 +40,17 @@
                         </span>
                     </a>
                     --}}
-                    <a class="level-item" aria-label="like">
-                        <span class="icon is-small">
-                            <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+                <a class="level-item" aria-label="like" id="plus-{{ $post->slug }}" onclick="votePost('{{ $post->slug }}', 'plus')">
+                        <span class="icon is-medium">
+                            <i class="fas fa-plus-circle" style="font-size: 28px; color: {{ $colorPlus }};" aria-hidden="true"></i>
                         </span>
-                        {{ $post->votes->where("type", "plus")->count() }}
+                        <span class="plus">{{ $post->votes->where("type", "plus")->count() }}</span>
                     </a>
-                    <a class="level-item" aria-label="unlike">
-                        <span class="icon is-small">
-                            <i class="fas fa-thumbs-down" aria-hidden="true"></i>
+                    <a class="level-item" aria-label="unlike" id="minus-{{ $post->slug }}" onclick="votePost('{{ $post->slug }}', 'minus')">
+                        <span class="icon is-medium">
+                                <i class="fas fa-minus-circle" style="font-size: 28px; color: {{ $colorMinus }};" aria-hidden="true"></i>
                         </span>
-                        {{ $post->votes->where("type", "minus")->count() }}
+                        <span class='minus'>{{ $post->votes->where("type", "minus")->count() }}</span>
                     </a>
                 </div>
             </nav>
