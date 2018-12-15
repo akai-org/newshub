@@ -9,7 +9,15 @@
 @section('content')
     <section class="posts" style="margin-top:10px; margin-bottom:100px; margin-left:10px; margin-right:10px;">
         @foreach ($posts as $post)
-            @include('layouts/post', ['post' => $post, 'url' => $post->getUrl()])
+            @if (Auth::check())
+                @if ($vote = $post->votes->firstWhere('user_id', Auth::user()->user_id))
+                    @include('layouts/post', ['post' => $post, 'url' => $post->getUrl(), 'selected' => $vote->type])
+                @else
+                    @include('layouts/post', ['post' => $post, 'url' => $post->getUrl()])
+                @endif
+            @else
+                @include('layouts/post', ['post' => $post, 'url' => $post->getUrl()])
+            @endif
         @endforeach
     </section>
 @endsection
