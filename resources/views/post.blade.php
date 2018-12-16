@@ -18,6 +18,8 @@
             @else
                 @include('layouts/post', ['post' => $post])
             @endif
+        @else 
+            @include('layouts/post', ['post' => $post])
         @endif
     </section>
     {{-- @foreach ($post->comments as $comment)
