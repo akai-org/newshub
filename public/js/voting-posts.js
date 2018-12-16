@@ -19,6 +19,9 @@ function votePost(slug, type) {
             } else if (response.selected == 'minus') {
                 minus_icon.css('color', 'black');
                 plus_icon.css('color', '#b6a7a8');
+            } else {
+                minus_icon.css('color', '#b6a7a8');
+                plus_icon.css('color', '#b6a7a8');
             }
             plus_count.html(response.plus);
             minus_count.html(response.minus);
