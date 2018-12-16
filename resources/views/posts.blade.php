@@ -19,6 +19,7 @@
                 @include('layouts/post', ['post' => $post, 'url' => $post->getUrl()])
             @endif
         @endforeach
+        {{ $posts->links('vendor.pagination.bulma') }}
     </section>
 @endsection
 
