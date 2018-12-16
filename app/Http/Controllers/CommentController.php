@@ -45,11 +45,15 @@ class CommentController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        $data = $request->validate([
+        $validate_rules = [
             'content' => 'required|filled',
-            'parent' => 'nullable',
-            //'parent' => 'exists:comments,comment_id',
-        ]);
+        ];
+        if (!$request->parent || $request->parent!=null) {
+            $validate_rules['parent'] = 'exists:comments,comment_id';
+        } else {
+            $validate_rules['parent'] = 'nullable';
+        }
+        $data = $request->validate($validate_rules);
         $data['parent_id'] = $request['parent'];
         $data['user_id'] = Auth::user()->user_id;
         $data['post_id'] = $post->post_id;
