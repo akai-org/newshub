@@ -25,54 +25,15 @@
     </div>
     <div class="field is-horizontal">
       <div class="field-label is-normal">
-        <label class="label">Wgraj obrazek</label>
+        <label class="label">Wybierz obraz</label>
       </div>
       <div class="field-body">
         <div class="field is-narrow">
-
-          <div class="file has-name is-fullwidth">
-            <label class="file-label">
-              <input class="file-input" type="file" name="resume">
-              <span class="file-cta">
-                <span class="file-icon">
-                  <i class="fas fa-upload"></i>
-                </span>
-                <span class="file-label">
-                  Wybierz obrazek…
-                </span>
-              </span>
-              <span class="file-name">
-                nazwa_obrazka.png (musi obslugiwac kod w js)
-              </span>
-            </label>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Podaj link</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <p class="control is-expanded has-icons-left">
-
-              <input type="text" class="input" placeholder="link" name="url" value="{{ $new_post['url'] }}"><br />
-
-              <span class="icon is-small is-left">
-                <i class="fas fa-link"></i>
-              </span>
-            </p>
-            @if ($errors->has('url'))
-            <p class="help is-danger">{{ $errors->first('url') }}</p>
-            @endif
-          </div>
-
+          <select name="image" class="image-picker show-html">
+            @foreach ($new_post['images'] as $key => $image)
+              <option data-img-src='{{ $image['url'] }}' data-img-class="image-resize" value='{{ $key }}'>
+            @endforeach
+          </select>
         </div>
       </div>
     </div>
@@ -85,7 +46,6 @@
         <div class="field">
           <div class="control">
             <textarea class="textarea" placeholder="Opisz co ci tam w duszy gra" name="description">{{ $new_post['description'] }}</textarea>
-
           </div>
           @if ($errors->has('description'))
           <p class="help is-danger">{{ $errors->first('description') }}</p>
@@ -108,7 +68,8 @@
         </div>
       </div>
     </div>
-
   </form>
-
 </section>
+<script>
+  $("select").imagepicker();
+</script>
