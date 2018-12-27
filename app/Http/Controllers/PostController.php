@@ -8,7 +8,7 @@ use App\User;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\VotePost;
-use shweshi\OpenGraph\OpenGraph;
+use Embed\Embed;
 
 class PostController extends Controller
 {
@@ -37,12 +37,15 @@ class PostController extends Controller
         if ($request->isMethod('post')) {
             $request->validate(['url' => 'active_url']);
             $url = $request->input('url');
-            $og = (new OpenGraph)->fetch($url);
+            $info = Embed::create($url, [
+                'min_image_width' => 300,
+                'min_image_height' => 250,
+            ]);
             $data_post = [
                 'url' => $url,
-                'title' => (isset($og['title'])) ? $og['title'] : "",
-                'images' => (isset($og['image'])) ? [$og['image']] : [],
-                'description' => (isset($og['description'])) ? $og['description'] : "",
+                'title' => $info->title,
+                'images' => $info->images,
+                'description' => $info->description,
             ];
             return view('new_post', ['new_post' => $data_post]);
         }
