@@ -8,6 +8,7 @@ use App\User;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\VotePost;
+use shweshi\OpenGraph\OpenGraph;
 
 class PostController extends Controller
 {
@@ -31,8 +32,20 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->isMethod('post')) {
+            $request->validate(['url' => 'active_url']);
+            $url = $request->input('url');
+            $og = (new OpenGraph)->fetch($url);
+            $data_post = [
+                'url' => $url,
+                'title' => (isset($og['title'])) ? $og['title'] : "",
+                'images' => (isset($og['image'])) ? [$og['image']] : [],
+                'description' => (isset($og['description'])) ? $og['description'] : "",
+            ];
+            return view('new_post', ['new_post' => $data_post]);
+        }
         return view('new_post');
     }
 

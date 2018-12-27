@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "938fb2b0108d896bf0e730358ea26a9b",
+    "content-hash": "e4a5cf2a5f2461bd8bdf6b328db87c56",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1058,7 +1058,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -2048,6 +2048,52 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "shweshi/opengraph",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shweshi/OpenGraph.git",
+                "reference": "642957a3c3bb7316fd246ef2885e13f4dca914f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shweshi/OpenGraph/zipball/642957a3c3bb7316fd246ef2885e13f4dca914f2",
+                "reference": "642957a3c3bb7316fd246ef2885e13f4dca914f2",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "shweshi\\OpenGraph\\Providers\\OpenGraphProvider"
+                    ],
+                    "aliases": {
+                        "OpenGraph": "shweshi\\OpenGraph\\Facades\\OpenGraphFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "shweshi\\OpenGraph\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shashi Prakash Gautam",
+                    "email": "contactmespg@gmail.com"
+                }
+            ],
+            "description": "A Laravel package to fetch website Open Graph metadata.",
+            "time": "2018-11-23T19:42:16+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

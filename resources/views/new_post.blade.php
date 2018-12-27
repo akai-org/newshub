@@ -3,7 +3,11 @@
 @section('title', 'Nowy wpis')
 
 @section('content')
-    @include('layouts/new_post_form')
+    @if (isset($new_post))
+        @include('layouts/create_post_form')
+    @else
+        @include('layouts/new_post_form')
+    @endif
 @endsection
 
 @section('footer')
