@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\File;
 
 class Post extends Model
 {
@@ -41,12 +42,20 @@ class Post extends Model
                 $type = pathinfo($lastword, PATHINFO_EXTENSION);
                 $filename = (!empty($type)) ? uniqid() . '.' . $type : uniqid();
                 //if (Storage::disk('local')->put('public/'.$filename, file_get_contents($image_url))) {
-                if ($image = Image::make($image_url)->fit(300, 250)->save('storage/'.$filename)) {
-                    $image_url = Storage::url($filename);
+                $path = 'storage/posts/';
+                File::isDirectory($path) or File::makeDirectory($path, 0775, true, true);
+                if ($image = Image::make($image_url)->fit(300, 250)->save($path.$filename)) {
+                    $image_url = $path.$filename;
                 }
             }
             $post->image = $image_url;
         });
+
+        // static::destroy(function ($post) {
+        //     if (!filter_var($post->image, FILTER_VALIDATE_URL)) {
+        //         Storage::delete($post->image);
+        //     }
+        // });
     }
 
     /**
