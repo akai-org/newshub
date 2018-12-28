@@ -41,13 +41,13 @@ class PostController extends Controller
                 'min_image_width' => 300,
                 'min_image_height' => 250,
             ]);
-            $data_post = [
+            $new_post = [
                 'url' => $url,
                 'title' => $info->title,
                 'images' => $info->images,
                 'description' => $info->description,
             ];
-            return view('new_post', ['new_post' => $data_post]);
+            return view('new_post', ['new_post' => $new_post]);
         }
         return view('new_post');
     }
@@ -63,11 +63,11 @@ class PostController extends Controller
         $attributes = $request->validate([
             'title' => 'required|min:10|max:200',
             'description' => 'required|min:10',
-            'url' => 'required|url|unique:posts'
+            'url' => 'required|active_url|unique:posts',
+            'image' => 'required|url',
         ]);
-        $attributes['image'] = "https://www.wykop.pl/cdn/c2526412/no-picture,w207h139.jpg";
         $post = Auth::user()->addPost($attributes);
-        return redirect(action("PostController@show", ['slug' => $post->slug]));
+        return redirect(action("PostController@show", ['post' => $post->slug]));
     }
 
     /**

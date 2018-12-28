@@ -2,6 +2,7 @@
 
   <form method="POST" action="{{ route('store_post') }}">
     {{ csrf_field() }}
+    <input type="hidden" name="url" value="{{ $new_post['url'] }}">
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Nazwa tematu</label>
@@ -9,9 +10,7 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded has-icons-left">
-
             <input class="input" type="text" value="{{ $new_post['title'] }}" placeholder="Nazwa Tematu" name="title">
-
             <span class="icon is-small is-left">
               <i class="fas fa-chalkboard"></i>
             </span>
@@ -20,7 +19,6 @@
           <p class="help is-danger">{{ $errors->first('title') }}</p>
           @endif
         </div>
-
       </div>
     </div>
     <div class="field is-horizontal">
@@ -31,13 +29,12 @@
         <div class="field is-narrow">
           <select name="image" class="image-picker show-html">
             @foreach ($new_post['images'] as $key => $image)
-              <option data-img-src='{{ $image['url'] }}' data-img-class="image-resize" value='{{ $key }}'>
+              <option data-img-src='{{ $image['url'] }}' data-img-class="image-resize" value='{{ $image['url'] }}'>
             @endforeach
           </select>
         </div>
       </div>
     </div>
-
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Opis</label>
@@ -56,7 +53,6 @@
 
     <div class="field is-horizontal">
       <div class="field-label">
-
       </div>
       <div class="field-body">
         <div class="field">

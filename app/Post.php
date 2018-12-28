@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class Post extends Model
 {
@@ -15,6 +17,7 @@ class Post extends Model
         parent::boot();
 
         static::saving(function ($post) {
+            //Generate unique slug
             $slug = str_slug($post->title);
             if (strlen($slug)>60) {
                 $slug = substr(str_slug($post->title),0,60);
@@ -29,6 +32,18 @@ class Post extends Model
                 $slug = str_replace('--', '-', $slug);
             }
             $post->slug = $slug;
+
+            //Download image to local storage
+            $image_url = $post->image;
+            if ($file = curl_init($image_url)) {
+                $lastword = substr($image_url, strrpos($image_url, '/') + 1);
+                $type = pathinfo($lastword, PATHINFO_EXTENSION);
+                $filename = ($type) ? uniqid() . '.' . $type : uniqid();
+                if (Storage::disk('local')->put('public/'.$filename, file_get_contents($image_url))) {
+                    $image_url = Storage::url($filename);
+                }
+            }
+            $post->image = $image_url;
         });
     }
 
@@ -69,5 +84,12 @@ class Post extends Model
     public function getUrl() {
         //return action("PostController@show", ['slug' => $this->slug]);
         return route('post', ['slug' => $this->slug]);
+    }
+    
+    public function imageUrl() {
+        if (!filter_var($this->image, FILTER_VALIDATE_URL)) {
+            return asset($this->image);
+        }
+        return $this->image;
     }
 }

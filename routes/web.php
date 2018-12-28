@@ -19,7 +19,6 @@ Route::match(['get','post'], '/create', "PostController@create")->name('new_post
 Route::post('/store', "PostController@store")->name('store_post')->middleware("auth");
 Route::post('/post/{post}/vote', "PostController@vote")->name('vote_post')->middleware("can:change,post");
 Route::get('/post/{post}', "PostController@show")->name('post');
-Route::get('/post/{post}#{comment}', "PostController@show")->name('post_comment');
 Route::put('/post/{post}', "PostController@update")->middleware("can:change,post");
 Route::delete('/post/{post}', "PostController@destroy")->middleware("can:change,post");
 
