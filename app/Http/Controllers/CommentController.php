@@ -48,7 +48,7 @@ class CommentController extends Controller
         $validate_rules = [
             'content' => 'required|filled',
         ];
-        if (!$request->parent || $request->parent!=null) {
+        if ($request->parent!=null) {
             $validate_rules['parent'] = 'exists:comments,comment_id';
         } else {
             $validate_rules['parent'] = 'nullable';
