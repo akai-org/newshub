@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class Post extends Model
 {
@@ -35,11 +36,12 @@ class Post extends Model
 
             //Download image to local storage
             $image_url = $post->image;
-            if ($file = curl_init($image_url)) {
+            if (curl_init($image_url)) {
                 $lastword = substr($image_url, strrpos($image_url, '/') + 1);
                 $type = pathinfo($lastword, PATHINFO_EXTENSION);
-                $filename = ($type) ? uniqid() . '.' . $type : uniqid();
-                if (Storage::disk('local')->put('public/'.$filename, file_get_contents($image_url))) {
+                $filename = (!empty($type)) ? uniqid() . '.' . $type : uniqid();
+                //if (Storage::disk('local')->put('public/'.$filename, file_get_contents($image_url))) {
+                if ($image = Image::make($image_url)->fit(300, 250)->save('storage/'.$filename)) {
                     $image_url = Storage::url($filename);
                 }
             }

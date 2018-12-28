@@ -64,7 +64,7 @@ class PostController extends Controller
             'title' => 'required|min:10|max:200',
             'description' => 'required|min:10',
             'url' => 'required|active_url|unique:posts',
-            'image' => 'required|url',
+            'image' => 'required|active_url',
         ]);
         $post = Auth::user()->addPost($attributes);
         return redirect(action("PostController@show", ['post' => $post->slug]));
