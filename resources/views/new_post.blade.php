@@ -1,23 +1,9 @@
 @extends('layouts/base')
 
 @section('title', 'Dodaj nowy wpis')
-@section('head')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/image-picker.css') }}">
-    <script type="text/javascript" src="{{ asset('js/image-picker.min.js') }} "></script>
-    <style>
-        .image-resize {
-            width: 100px;
-        }
-    </style>
-@endsection
-
 
 @section('content')
-    @if (isset($new_post))
-        @include('layouts/create_post_form')
-    @else
-        @include('layouts/new_post_form')
-    @endif
+    @include('layouts/new_post_form')
 @endsection
 
 @section('footer')

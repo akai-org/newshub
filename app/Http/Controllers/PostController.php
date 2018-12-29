@@ -34,23 +34,20 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
-        if ($request->isMethod('post')) {
-            $request->validate(['url' => 'active_url']);
-            $url = $request->input('url');
-            $info = Embed::create($url, [
-                'min_image_width' => 300,
-                'min_image_height' => 250,
-            ]);
-            $images = [['url' => asset('default_post.jpg')]] + $info->images;
-            $new_post = [
-                'url' => $url,
-                'title' => $info->title,
-                'images' => $images,
-                'description' => $info->description,
-            ];
-            return view('new_post', ['new_post' => $new_post]);
-        }
-        return view('new_post');
+        $request->validate(['url' => 'active_url']);
+        $url = $request->input('url');
+        $info = Embed::create($url, [
+            'min_image_width' => 250,
+            'min_image_height' => 200,
+        ]);
+        $images = [['url' => asset('default_post.jpg')]] + $info->images;
+        $new_post = [
+            'url' => $url,
+            'title' => $info->title,
+            'images' => $images,
+            'description' => $info->description,
+        ];
+        return view('create_post', ['new_post' => $new_post]);
     }
 
     /**
@@ -65,7 +62,7 @@ class PostController extends Controller
             'title' => 'required|min:10|max:200',
             'description' => 'required|min:10',
             'url' => 'required|active_url|unique:posts',
-            'image' => 'required|active_url',
+            'image' => 'required|url',
         ]);
         $post = Auth::user()->addPost($attributes);
         return redirect(action("PostController@show", ['post' => $post->slug]));
@@ -92,7 +89,7 @@ class PostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Httpadd\Response
      */
     public function update(Request $request, Post $post)
     {

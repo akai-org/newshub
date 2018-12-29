@@ -25,7 +25,7 @@
       <div class="navbar-brand">
 
         <a class="navbar-item" href="{{ url('/') }}">
-          <img src="img/newshub.png" style="width:100%; height:3000%;" alt="{{ config('app.name', 'NewsHub') }}">
+          <img src="{{ asset('newshub.png') }}" style="width:100%; height:3000%;" alt="{{ config('app.name', 'NewsHub') }}">
         </a>
 
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

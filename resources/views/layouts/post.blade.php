@@ -2,7 +2,7 @@
     <article class="media">
         <div class="media-left">
             <figure class="image is-256x256">
-                <img src="{{ $post->imageUrl() }}" alt="Image" style="width:256px;">
+                <img src="{{ $post->imageUrl() }}" alt="Image" style="width:200px;">
             </figure>
         </div>
         <div class="media-content">

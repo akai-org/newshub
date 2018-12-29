@@ -15,7 +15,10 @@
 Route::get('/', "PostController@index")->name('index');
 Route::get('/user/{username}', "PostController@user")->name('user_posts');
 Route::get('/user/{username}/posts', "PostController@user");
-Route::match(['get','post'], '/create', "PostController@create")->name('new_post')->middleware('auth');
+Route::get('/create', "PostController@create")->name('create_post')->middleware('auth');
+Route::get('/add', function() {
+    return view('new_post');
+})->name('new_post')->middleware('auth');
 Route::post('/store', "PostController@store")->name('store_post')->middleware("auth");
 Route::post('/post/{post}/vote', "PostController@vote")->name('vote_post')->middleware("can:change,post");
 Route::get('/post/{post}', "PostController@show")->name('post');

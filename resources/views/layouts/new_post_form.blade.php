@@ -1,6 +1,6 @@
 <section id="post-add">
 
-  <form method="POST" action="{{ route('new_post') }}">
+  <form method="GET" action="{{ route('create_post') }}">
     {{ csrf_field() }}
     <div class="field is-horizontal">
       <div class="field-label is-normal">
@@ -11,7 +11,7 @@
           <div class="control">
             <p class="control is-expanded has-icons-left">
 
-              <input type="text" class="input" placeholder="link" name="url" value="{{ old('url') }}"><br />
+              <input type="text" class="input" placeholder="Link" name="url" value="{{ old('url') }}"><br />
 
               <span class="icon is-small is-left">
                 <i class="fas fa-link"></i>
