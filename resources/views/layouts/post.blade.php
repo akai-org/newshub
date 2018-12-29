@@ -59,6 +59,17 @@
                         </span>
                         <span class='minus'>{{ $post->votes->where("type", "minus")->count() }}</span>
                     </a>
+                    @if (Auth::check() && Auth::user()->is_admin)
+                        <form method="POST" action="{{ action("PostController@destroy", $post) }}">
+                            @method('DELETE')
+                            @csrf
+                            <a href="#" class="level-item" onclick="$(this).closest('form').submit()">
+                                <span class="icon is-medium">
+                                        <i class="fas fa-trash-alt" style="font-size: 28px; color: {{ $colorMinus }};" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                        </form>
+                    @endif
                 </div>
             </nav>
         </div>
