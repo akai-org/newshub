@@ -41,10 +41,11 @@ class PostController extends Controller
                 'min_image_width' => 300,
                 'min_image_height' => 250,
             ]);
+            $images = [['url' => asset('default_post.jpg')]] + $info->images;
             $new_post = [
                 'url' => $url,
                 'title' => $info->title,
-                'images' => $info->images,
+                'images' => $images,
                 'description' => $info->description,
             ];
             return view('new_post', ['new_post' => $new_post]);
