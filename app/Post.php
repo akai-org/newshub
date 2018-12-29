@@ -4,10 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\File;
 
 class Post extends Model
 {
     protected $table = 'posts';
+    protected $primaryKey = 'post_id';
     protected $fillable = ['title', 'description', 'url', 'image', 'is_adult', 'is_visable'];
 
     public static function boot()
@@ -15,6 +20,7 @@ class Post extends Model
         parent::boot();
 
         static::saving(function ($post) {
+            //Generate unique slug
             $slug = str_slug($post->title);
             if (strlen($slug)>60) {
                 $slug = substr(str_slug($post->title),0,60);
@@ -29,7 +35,28 @@ class Post extends Model
                 $slug = str_replace('--', '-', $slug);
             }
             $post->slug = $slug;
+
+            //Download image to local storage
+            $image_url = $post->image;
+            if (($image_url!=asset('default_post.jpg')) && curl_init($image_url)) {
+                $orig = pathinfo($image_url, PATHINFO_EXTENSION);
+                $type = substr($orig, 0, strpos($orig, '?'));
+                $filename = (!empty($type)) ? uniqid() . '.' . $type : uniqid();
+                $path = 'storage/posts/';
+                File::isDirectory($path) or File::makeDirectory($path, 0775, true, true);
+                //if (Storage::disk('local')->put('public/'.$filename, file_get_contents($image_url))) {
+                if ($image = Image::make($image_url)->fit(250, 200)->save($path.$filename)) {
+                    $image_url = $path.$filename;
+                }
+            }
+            $post->image = $image_url;
         });
+
+        // static::destroy(function ($post) {
+        //     if (!filter_var($post->image, FILTER_VALIDATE_URL)) {
+        //         Storage::delete($post->image);
+        //     }
+        // });
     }
 
     /**
@@ -69,5 +96,12 @@ class Post extends Model
     public function getUrl() {
         //return action("PostController@show", ['slug' => $this->slug]);
         return route('post', ['slug' => $this->slug]);
+    }
+    
+    public function imageUrl() {
+        if (!filter_var($this->image, FILTER_VALIDATE_URL)) {
+            return asset($this->image);
+        }
+        return $this->image;
     }
 }

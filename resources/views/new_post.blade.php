@@ -1,6 +1,6 @@
 @extends('layouts/base')
 
-@section('title', 'Nowy wpis')
+@section('title', 'Dodaj nowy wpis')
 
 @section('content')
     @include('layouts/new_post_form')

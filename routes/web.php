@@ -15,11 +15,13 @@
 Route::get('/', "PostController@index")->name('index');
 Route::get('/user/{username}', "PostController@user")->name('user_posts');
 Route::get('/user/{username}/posts', "PostController@user");
-Route::get('/create', "PostController@create")->name('new_post')->middleware('auth');
-Route::post('/create', "PostController@store")->name('store_post')->middleware("auth");
+Route::get('/create', "PostController@create")->name('create_post')->middleware('auth');
+Route::get('/add', function() {
+    return view('new_post');
+})->name('new_post')->middleware('auth');
+Route::post('/store', "PostController@store")->name('store_post')->middleware("auth");
 Route::post('/post/{post}/vote', "PostController@vote")->name('vote_post')->middleware("can:change,post");
 Route::get('/post/{post}', "PostController@show")->name('post');
-Route::get('/post/{post}#{comment}', "PostController@show")->name('post_comment');
 Route::put('/post/{post}', "PostController@update")->middleware("can:change,post");
 Route::delete('/post/{post}', "PostController@destroy")->middleware("can:change,post");
 

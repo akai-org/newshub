@@ -8,6 +8,7 @@ use App\User;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\VotePost;
+use Embed\Embed;
 
 class PostController extends Controller
 {
@@ -31,9 +32,22 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('new_post');
+        $request->validate(['url' => 'active_url']);
+        $url = $request->input('url');
+        $info = Embed::create($url, [
+            'min_image_width' => 250,
+            'min_image_height' => 200,
+        ]);
+        $images = [['url' => asset('default_post.jpg')]] + $info->images;
+        $new_post = [
+            'url' => $url,
+            'title' => $info->title,
+            'images' => $images,
+            'description' => $info->description,
+        ];
+        return view('create_post', ['new_post' => $new_post]);
     }
 
     /**
@@ -47,11 +61,11 @@ class PostController extends Controller
         $attributes = $request->validate([
             'title' => 'required|min:10|max:200',
             'description' => 'required|min:10',
-            'url' => 'required|url|unique:posts'
+            'url' => 'required|active_url|unique:posts',
+            'image' => 'required|url',
         ]);
-        $attributes['image'] = "https://www.wykop.pl/cdn/c2526412/no-picture,w207h139.jpg";
         $post = Auth::user()->addPost($attributes);
-        return redirect(action("PostController@show", ['slug' => $post->slug]));
+        return redirect(action("PostController@show", ['post' => $post->slug]));
     }
 
     /**
@@ -75,7 +89,7 @@ class PostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Httpadd\Response
      */
     public function update(Request $request, Post $post)
     {

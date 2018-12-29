@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Storage;
 
 class CreatePostsTable extends Migration
 {
@@ -67,6 +68,7 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
+        Storage::cleanDirectory('storage/posts');
         Schema::dropIfExists('posts');
     }
 }
