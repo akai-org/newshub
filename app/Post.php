@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\File;
 class Post extends Model
 {
     protected $table = 'posts';
+    protected $primaryKey = 'post_id';
     protected $fillable = ['title', 'description', 'url', 'image', 'is_adult', 'is_visable'];
 
     public static function boot()
@@ -44,7 +45,7 @@ class Post extends Model
                 //if (Storage::disk('local')->put('public/'.$filename, file_get_contents($image_url))) {
                 $path = 'storage/posts/';
                 File::isDirectory($path) or File::makeDirectory($path, 0775, true, true);
-                if ($image = Image::make($image_url)->fit(300, 250)->save($path.$filename)) {
+                if ($image = Image::make(file_get_contents($image_url))->fit(300, 250)->save($path.$filename)) {
                     $image_url = $path.$filename;
                 }
             }
