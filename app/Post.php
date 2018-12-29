@@ -40,11 +40,12 @@ class Post extends Model
             $image_url = $post->image;
             if (curl_init($image_url)) {
                 $lastword = substr($image_url, strrpos($image_url, '/') + 1);
-                $type = pathinfo($lastword, PATHINFO_EXTENSION);
+                $orig = pathinfo($image_url, PATHINFO_EXTENSION);
+                $type = substr($orig, 0, strpos($orig, '?'));
                 $filename = (!empty($type)) ? uniqid() . '.' . $type : uniqid();
-                //if (Storage::disk('local')->put('public/'.$filename, file_get_contents($image_url))) {
                 $path = 'storage/posts/';
                 File::isDirectory($path) or File::makeDirectory($path, 0775, true, true);
+                //if (Storage::disk('local')->put('public/'.$filename, file_get_contents($image_url))) {
                 if ($image = Image::make(file_get_contents($image_url))->fit(300, 250)->save($path.$filename)) {
                     $image_url = $path.$filename;
                 }
