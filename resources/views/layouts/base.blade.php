@@ -16,6 +16,9 @@
 
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+  <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
   @yield('head')
 </head>
 
