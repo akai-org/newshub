@@ -1,24 +1,24 @@
 @php
-if (!isset($url)) {
-$url = $post->url;
-}
-$colorPlus = "#b6a7a8";
-$colorMinus = "#b6a7a8";
-if (isset($selected)) {
-if ($selected=="plus") $colorPlus = "black";
-if ($selected=="minus") $colorMinus = "black";
-}
+    if (!isset($url)) {
+    $url = $post->url;
+    }
+    $colorPlus = "#b6a7a8";
+    $colorMinus = "#b6a7a8";
+    if (isset($selected)) {
+        if ($selected=="plus") $colorPlus = "black";
+        if ($selected=="minus") $colorMinus = "black";
+    }
 
-if (Auth::check()) {
-$edit_data = [
-'title' => $post->title,
-'description' => $post->description,
-];
-if (Auth::user()->is_admin) {
-$edit_data['url'] = $post->url;
-$edit_data['image'] = $post->image;
-}
-}
+    if (Auth::check()) {
+        $edit_data = [
+            'title' => $post->title,
+            'description' => $post->description,
+        ];
+        if (Auth::user()->is_admin) {
+            $edit_data['url'] = $post->url;
+            $edit_data['image'] = $post->image;
+        }
+    }
 @endphp
 <div class="box" id="{{ $post->slug }}">
     <article class="media">

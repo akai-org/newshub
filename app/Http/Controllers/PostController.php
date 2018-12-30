@@ -114,21 +114,23 @@ class PostController extends Controller
 
     public function vote(Request $request, Post $post) {
         $selected = null;
-        if ($vote = Auth::user()->votes_posts->where('post_id', $post->post_id)->first()) {
-            if ($request->type == $vote->type) {
-                $vote->delete();
+        //if ($post->user != Auth::user()) {
+            if ($vote = Auth::user()->votes_posts->where('post_id', $post->post_id)->first()) {
+                if ($request->type == $vote->type) {
+                    $vote->delete();
+                } else {
+                    $vote->update(['type' => $request->type]);
+                    $selected = $request->type;
+                }
             } else {
-                $vote->update(['type' => $request->type]);
+                $vote = VotePost::create([
+                    'user_id' => Auth::user()->user_id,
+                    'post_id' => $post->post_id,
+                    'type' => $request->type,
+                ]);
                 $selected = $request->type;
             }
-        } else {
-            $vote = VotePost::create([
-                'user_id' => Auth::user()->user_id,
-                'post_id' => $post->post_id,
-                'type' => $request->type,
-            ]);
-            $selected = $request->type;
-        }
+        //}
         $array = [
             'plus' => $post->votes->where('type', 'plus')->count(),
             'minus' => $post->votes->where('type', 'minus')->count(),
