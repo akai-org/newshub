@@ -109,8 +109,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete();
-        return redirect(action("PostController@index"));
+        return response()->json($post->delete());
     }
 
     public function vote(Request $request, Post $post) {

@@ -9,7 +9,7 @@
         if ($selected=="minus") $colorMinus = "black";
     }
 @endphp
-<div class="box">
+<div class="box" id="{{ $post->slug }}">
     <article class="media">
         <div class="media-left">
             <a href="{{ $url }}">
@@ -59,16 +59,21 @@
                         </span>
                         <span class='minus'>{{ $post->votes->where("type", "minus")->count() }}</span>
                     </a>
-                    @if (Auth::check() && Auth::user()->is_admin)
-                        <form method="POST" action="{{ action("PostController@destroy", $post) }}">
-                            @method('DELETE')
-                            @csrf
-                            <a href="#" class="level-item" onclick="$(this).closest('form').submit()">
+                    @if (Auth::check())
+                        @if (Auth::user()->is_admin || Auth::user()==$post->user)
+                        <a class="level-item" onclick="editPost('{{ $post->slug }}')">
+                            <span class="icon is-medium">
+                                    <i class="fas fa-edit" style="font-size: 28px; color: {{ $colorMinus }};" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                        @endif
+                        @if (Auth::user()->is_admin)
+                            <a class="level-item" onclick="deletePost('{{ $post->slug }}')">
                                 <span class="icon is-medium">
                                         <i class="fas fa-trash-alt" style="font-size: 28px; color: {{ $colorMinus }};" aria-hidden="true"></i>
                                 </span>
                             </a>
-                        </form>
+                        @endif
                     @endif
                 </div>
             </nav>
