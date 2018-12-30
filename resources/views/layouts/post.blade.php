@@ -8,6 +8,17 @@
         if ($selected=="plus") $colorPlus = "black";
         if ($selected=="minus") $colorMinus = "black";
     }
+
+    if (Auth::check()) {
+        $edit_data = [
+            'title' => $post->title,
+            'description' => $post->description,
+        ];
+        if (Auth::user()->is_admin) {
+            $edit_data['url'] = $post->url;
+            $edit_data['image'] = $post->image;
+        }
+    }
 @endphp
 <div class="box" id="{{ $post->slug }}">
     <article class="media">
@@ -61,7 +72,7 @@
                     </a>
                     @if (Auth::check())
                         @if (Auth::user()->is_admin || Auth::user()==$post->user)
-                        <a class="level-item" onclick="editPost('{{ $post->slug }}')">
+                        <a class="level-item" onclick="editPost('{{ $post->slug }}', {{ json_encode($edit_data) }})">
                             <span class="icon is-medium">
                                     <i class="fas fa-edit" style="font-size: 28px; color: {{ $colorMinus }};" aria-hidden="true"></i>
                             </span>
