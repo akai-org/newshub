@@ -9,10 +9,10 @@ function votePost(slug, type) {
             'type': type
         },
         success: function(response) {
-            var plus_icon = $('#plus-' + slug + ' i');
-            var minus_icon = $('#minus-' + slug + ' i');
-            var plus_count = $('#plus-' + slug + ' .plus');
-            var minus_count = $('#minus-' + slug + ' .minus');
+            var plus_icon = $('#'+slug).find('.plus');
+            var minus_icon = $('#'+slug).find('.minus');
+            var plus_count = $('#'+slug).find('.plus_count');
+            var minus_count = $('#'+slug).find('.minus_count');
             if (response.selected == 'plus') {
                 plus_icon.css('color', 'black');
                 minus_icon.css('color', '#b6a7a8');

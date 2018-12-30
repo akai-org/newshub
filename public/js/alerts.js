@@ -36,13 +36,20 @@ function deletePost(slug) {
     });
 }
 
-async function editPost(slug, data) {
+async function editPost(slug, is_admin) {
+    var title = $('#'+slug).find('.post_title').html();
+    var description = $('#'+slug).find('.post_descripion').html();
+    var image = $('#'+slug).find('.post_image').attr('src');
+    var url = $('#'+slug).find('.post_url').attr('href');
+    if (url==undefined) {
+        url = $('#'+slug).find('.post_title').attr('href');
+    }
     let admin_inputs = '';
-    if ((data["url"] != undefined) && (data["image"] != undefined)) {
+    if (is_admin) {
         admin_inputs = '<h2 id="swal2-title" style="display: flex;">Link</h2>' +
-        `<input id="url" class="swal2-input" value='${data['url']}'>` +
+        `<input id="url" class="swal2-input" value='${url}'>` +
         '<h2 id="swal2-title" style="display: flex;">Obraz</h2>' +
-        `<input id="image" class="swal2-input" value='${data['image']}'>`;
+        `<input id="image" class="swal2-input" value='${image}'>`;
     }
     const {value: formValues} = await Swal({
         title: 'Edytuj wpis',
@@ -50,9 +57,9 @@ async function editPost(slug, data) {
         showCancelButton: true,
         html:
           '<h2 id="title" style="display: flex;">Tytuł</h2>' +
-          `<input id="swal-input1" class="swal2-input" value='${data['title']}'>` +
+          `<input id="swal-input1" class="swal2-input" value='${title}'>` +
           '<h2 id="description" style="display: flex;">Opis</h2>' +
-          `<textarea aria-label="Tutaj wpisz opis" class="swal2-textarea" style="display: flex;" placeholder="Tutaj wpisz opis">${data['description']}</textarea>` +
+          `<textarea aria-label="Tutaj wpisz opis" class="swal2-textarea" style="display: flex;" placeholder="Tutaj wpisz opis">${description}</textarea>` +
           admin_inputs,
         focusConfirm: false,
         preConfirm: () => {
