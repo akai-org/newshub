@@ -96,9 +96,10 @@ class PostController extends Controller
         $attributes = $request->validate([
             'title' => 'required|min:10|max:200',
             'description' => 'required|min:10',
-            'url' => 'required|url|unique:posts'
+            'url' => 'active_url',
+            'image' => 'url',
         ]);
-        $post->update($attributes);
+        return response()->json($post->update($attributes));
     }
 
     /**
