@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin')->default(false);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
+            $table->string('description', 100)->nullable();
         });
 
          // Insert some stuff

@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -40,6 +41,9 @@ class User extends Authenticatable
     {
         return 'username';
     }
+    public function user() {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 
     public function posts() {
         return $this->hasMany('App\Post', 'user_id');
@@ -59,6 +63,13 @@ class User extends Authenticatable
 
     public function addPost($attributes) {
         return $this->posts()->create($attributes);
+    }
+    public function addUpdatePassword($attributes){
+        $psdhash = Hash::make($attributes['newpassword']);
+       $oldhash = Hash::make($attributes['oldpassword']);
+       DB::update('UPDATE users SET password = ? where password = ?',[$psdhash,$oldhash]); 
+        
+        return true;
     }
 
     public function jquery_comments() {

@@ -1,34 +1,44 @@
 <section id="profile" class="profile">
   <div class="box">
     <div class="user-back" style="background-image: url('https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=background-blur-clean-531880.jpg&fm=jpg');">
-      <img src="{{ $user->image }}" class="user-logo" />
+    <img src="https://www.gravatar.com/avatar/{{ md5($user->email) }}?d={{ urlencode("https://www.gravatar.com/avatar")}}&s=150" class="user-logo" />
 
-      <div class="user-buttons">
+ <div class="user-buttons">
 
-        <a class="button social">
+  @if (isset(Auth::user()->username ) && $user->username == Auth::user()->username)
+        <a class="button social" href="{{ url('user/'.$user->username.'/settings') }}">
           <span class="icon">
-            <i class="fab fa-facebook"></i>
+            <i class="fa fa-cog"></i>
           </span>
 
         </a>
-        <a class="button social">
-          <span class="icon">
-            <i class="fab fa-twitter"></i>
-          </span>
+  @else
+      <a class="button social">
+        <span class="icon">
+          <i class="fab fa-facebook"></i>
+        </span>
 
-        </a>
-        <a class="button social">
-          <span class="icon">
-            <i class="fab fa-linkedin"></i>
-          </span>
+      </a>
+      <a class="button social">
+        <span class="icon">
+          <i class="fab fa-github"></i>
+        </span>
 
-        </a>
-        <a class="button social">
-          <span class="icon">
-            <i class="fab fa-github"></i>
-          </span>
+      </a>
+      <a class="button social">
+        <span class="icon">
+          <i class="fab fa-twitter"></i>
+        </span>
 
-        </a>
+      </a>
+      <a class="button social">
+        <span class="icon">
+          <i class="fab fa-stack-overflow"></i>
+        </span>
+
+      </a>
+      
+  @endif     
 
       </div>
     </div>
@@ -40,7 +50,7 @@
     @if (!empty($user->firstname)) {{ $user->firstname }} @endif
     @if (!empty($user->lastname)) {{ $user->lastname }} @endif 
     </small>
-    <p>Tutaj jeszcze damy jakiś króki opis usera. Lorem ipsum dolor sit amet vero fuga!</p>
+  <p>{{$user->description}}</p>
 
     <div class="tabs" style="margin-top:1.5rem;">
       <ul>

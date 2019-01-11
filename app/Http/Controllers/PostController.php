@@ -53,6 +53,7 @@ class PostController extends Controller
         $post = Auth::user()->addPost($attributes);
         return redirect(action("PostController@show", ['slug' => $post->slug]));
     }
+    
 
     /**
      * Display the specified resource.
