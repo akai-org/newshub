@@ -68,18 +68,20 @@
       
   
       <div class="user-profile">
+          <form method="POST" action="{{ route('user_settings') }}">
+              {{ csrf_field() }}
         <h3 class="is-size-3">Ustawienia użytkownika</h3>
         <label class="label">Imię i nazwisko</label>
         <div class="field is-grouped">
             
             <div class="control">
-              <input class="input" type="text" value="{{$user->firstname}}">
+              <input class="input" name="name" type="text" value="{{$user->firstname}}">
               
             </div>
           
   
         <div class="control">
-          <input class="input" type="text" value="{{$user->lastname}}">
+          <input class="input" name="surname" type="text" value="{{$user->lastname}}">
           
         </div>
       </div>
@@ -87,22 +89,35 @@
       <div class="field">
         <label class="label">Email</label>
         <div class="control">
-          <input class="input" type="email" value="{{$user->email}}">
+          <input class="input" name="email" type="email" value="{{$user->email}}">
           
         </div>
       </div>
 <div class="field">
     <label class="label">Opis</label>
     <div class="control">
-      <textarea class="textarea" placeholder="Twój ekstra opis">{{$user->description}}</textarea>
+      <textarea class="textarea" name="desc" placeholder="Twój ekstra opis">{{$user->description}}</textarea>
     </div>
   </div>
+  @if ($errors->has('name'))
+        <p class="help is-danger">{{ $errors->first('name') }}</p>
+       @endif
+@if ($errors->has('surname'))
+<p class="help is-danger">{{ $errors->first('surname') }}</p>
+@endif
+@if ($errors->has('email'))
+<p class="help is-danger">{{ $errors->first('email') }}</p>
+@endif
+@if ($errors->has('desc'))
+<p class="help is-danger">{{ $errors->first('desc') }}</p>
+@endif
   <div class="field">
         <div class="control">
                 <button class="button is-primary">Zapisz</button>
               </div>
 
   </div>
+          </form>
 
   <hr>
 

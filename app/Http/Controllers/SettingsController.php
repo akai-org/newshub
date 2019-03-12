@@ -23,13 +23,32 @@ class SettingsController extends Controller
             'oldpassword' => 'required',
             'newpassword' => 'required|min:5|required_with:newpasswordrepeat|same:newpasswordrepeat',
             'newpasswordrepeat' => 'required|min:5'
+            
         ]);
-      
-       $usr = Auth::user()->addUpdatePassword($attributes);
-       if($usr == true){
-       }
+        $user_id = Auth::user()->user_id;
+       $usr = Auth::user()->UpdatePassword($attributes, $user_id);
+       if($usr == true);
+
+       return redirect()->back();
+       
+       
     }
     
+    public function update_userdata(Request $request){
+        $attributes = $request->validate([
+               'name' => 'required|min:3|max:20',
+               'surname' => 'required|min:3|max:20',
+               'email' => 'required|min:4',
+               'desc' => 'required|min:3' 
+        ]);
+        $user_id = Auth::user()->user_id;
+        $usr = Auth::user()->updateData($attributes, $user_id);
+        if($usr == true);
+        return redirect()->back();
+        
+    }
+
+
 }
 
 ?>

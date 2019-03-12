@@ -36,4 +36,7 @@ Route::post('/comment/{comment}/vote', "CommentController@vote")->name("vote_com
 //settings
 Route::get('/user/{username}/settings', "SettingsController@show")->name('user_settings')->middleware('auth');
 Route::post('/user_settings', "SettingsController@update_password")->name('user_settings')->middleware("auth");
+Route::post('/user_settings', "SettingsController@update_userdata")->name('user_settings')->middleware('auth');
+
+
 Auth::routes();
