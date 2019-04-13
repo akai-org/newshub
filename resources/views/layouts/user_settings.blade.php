@@ -111,6 +111,7 @@
 @if ($errors->has('desc'))
 <p class="help is-danger">{{ $errors->first('desc') }}</p>
 @endif
+<!-- dodac lapanie oraz dodac pola w bazie na githubowe profile etc.-->
   <div class="field">
         <div class="control">
                 <button class="button is-primary">Zapisz</button>
@@ -120,6 +121,53 @@
           </form>
 
   <hr>
+
+<h3 class="is-size-3">Edycja linków społeczności</h3>
+<form method="POST" action="{{ route('user_settings')}}">
+  {{ csrf_field() }}
+  <label class="label"><span class="fab fa-github"></span>GitHub:</label>
+<div class="control">
+  <input class="input" type="text" name="github" placeholder="https://github.com/akai-org/newshub">
+
+</div>
+@if($errors->has('github'))
+  <p class="help is-danger">{{$errors->first('github') }}</p>
+@endif
+
+<label class="label"><span class="fab fa-facebook"></span>Facebook:</label>
+<div class="control">
+  <input class="input" type="text" name="facebook" placeholder="https://facebook.com">
+
+</div>
+@if($errors->has('facebook'))
+  <p class="help is-danger">{{$errors->first('facebook') }}</p>
+@endif
+
+<label class="label"><span class="fab fa-twitter"></span>Twitter:</label>
+<div class="control">
+  <input class="input" type="text" name="twitter" placeholder="https://twitter.com">
+
+</div>
+@if($errors->has('twitter'))
+  <p class="help is-danger">{{$errors->first('twitter') }}</p>
+@endif
+
+<label class="lavel"><span class="fab fa-stack-overflow"></span> StackOverflow:</label>
+<div class="control">
+  <input class="input" type="text" name="stackoverflow" placeholder="https://stackoverflow.com">
+
+</div>
+@if($errors->has('stackoverflow'))
+  <p class="help is-danger">{{$errors->first('stackoverflow') }}</p>
+@endif
+
+<div class="field">
+  <div class="control">
+          <button class="button is-primary">Zapisz</button>
+        </div>
+
+</div>
+</form>
 
 
   <h3 class="is-size-3">Zmiana Hasła</h3>
