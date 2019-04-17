@@ -70,6 +70,23 @@
       <div class="user-profile">
           <form method="POST" action="{{ route('user_settings') }}">
               {{ csrf_field() }}
+
+        @if (session('userdata'))
+              <div class="notification is-success">
+                  <h3 class="is-size-3">{{session('userdata')}}</h3>
+              </div>
+          @endif
+          @if (session('socials'))
+          <div class="notification is-success">
+              <h3 class="is-size-3">{{session('status')}}</h3>
+          </div>
+      @endif
+      @if (session('passwordupdate'))
+              <div class="notification is-success">
+                  <h3 class="is-size-3">{{session('passwordupdate')}}</h3>
+              </div>
+          @endif
+
         <h3 class="is-size-3">Ustawienia użytkownika</h3>
         <label class="label">Imię i nazwisko</label>
         <div class="field is-grouped">
@@ -125,27 +142,27 @@
 <h3 class="is-size-3">Edycja linków społeczności</h3>
 <form method="POST" action="{{ route('user_settings')}}">
   {{ csrf_field() }}
-  <label class="label"><span class="fab fa-github"></span>GitHub:</label>
+  <label class="label"><span class="fab fa-github"></span> GitHub:</label>
 <div class="control">
-  <input class="input" type="text" name="github" placeholder="https://github.com/akai-org/newshub">
+  <input class="input" type="text" name="github"  value="{{$user->github}}" placeholder="https://github.com/akai-org/newshub">
 
 </div>
 @if($errors->has('github'))
   <p class="help is-danger">{{$errors->first('github') }}</p>
 @endif
 
-<label class="label"><span class="fab fa-facebook"></span>Facebook:</label>
+<label class="label"><span class="fab fa-facebook"></span> Facebook:</label>
 <div class="control">
-  <input class="input" type="text" name="facebook" placeholder="https://facebook.com">
+  <input class="input" type="text" name="facebook" value="{{$user->facebook}}" placeholder="https://facebook.com">
 
 </div>
 @if($errors->has('facebook'))
   <p class="help is-danger">{{$errors->first('facebook') }}</p>
 @endif
 
-<label class="label"><span class="fab fa-twitter"></span>Twitter:</label>
+<label class="label"><span class="fab fa-twitter"></span> Twitter:</label>
 <div class="control">
-  <input class="input" type="text" name="twitter" placeholder="https://twitter.com">
+  <input class="input" type="text" name="twitter" value="{{$user->twitter}}" placeholder="https://twitter.com">
 
 </div>
 @if($errors->has('twitter'))
@@ -154,7 +171,7 @@
 
 <label class="lavel"><span class="fab fa-stack-overflow"></span> StackOverflow:</label>
 <div class="control">
-  <input class="input" type="text" name="stackoverflow" placeholder="https://stackoverflow.com">
+  <input class="input" type="text" name="stackoverflow" value="{{$user->stackoverflow}}" placeholder="https://stackoverflow.com">
 
 </div>
 @if($errors->has('stackoverflow'))
@@ -176,8 +193,9 @@
         {{ csrf_field() }}
   <label class="label">Obecne Hasło:</label>
   <div class="control">
+   
         <input class="input" type="password" name="oldpassword" placeholder="Obecne hasło">
-        
+  
   </div>
   @if ($errors->has('oldpassword'))
   <p class="help is-danger">{{ $errors->first('oldpassword') }}</p>
