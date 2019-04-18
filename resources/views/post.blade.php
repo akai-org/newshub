@@ -8,7 +8,6 @@
     <script type="text/javascript" src="{{ asset('js/moment-with-locales.js') }} "></script>
     <script type="text/javascript" src="{{ asset('js/jquery.textcomplete.min.js') }} "></script>
     <script type="text/javascript" src="{{ asset('js/voting-posts.js') }} "></script>
-    <script type="text/javascript" src="{{ asset('js/voting-posts.js') }} "></script>
     <script type="text/javascript" src="{{ asset('js/alerts.js') }} "></script>
 @endsection
 
