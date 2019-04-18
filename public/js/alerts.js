@@ -70,13 +70,15 @@ function editPost(slug, is_admin) {
             inputValue: $('#'+slug).find('.post_descripion').html(),
         },
       ].concat(admin_array)).then((result) => {
+        console.log(result);
         if (result.value) {
             var input_url = null;
             var input_image = null;
             if (is_admin) {
-                input_url = result.value.url;
-                input_image = result.value.image;
+                input_url = result.value[2];
+                input_image = result.value[3];
             }
+            console.log(result.value);
             $.ajax({
                 type: 'put',
                 url: '/post/' + slug,
@@ -84,10 +86,10 @@ function editPost(slug, is_admin) {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: {
-                    title: result.value.title, 
-                    description: result.value.description, 
-                    url: input_url,
-                    image: input_image,
+                    title: result.value[0], 
+                    description: result.value[1], 
+                    url: result.value[2], 
+                    image: result.value[3], 
                 },
                 success: function(data) {
                     Swal(
