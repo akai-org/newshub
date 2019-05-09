@@ -29,17 +29,14 @@ class CreateUsersTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             $table->string('description', 100)->nullable();
+            $table->string('github', 100)->nullable();
+            $table->string('stackoverflow', 100)->nullable();
+            $table->string('twitter', 100)->nullable();
+            $table->string('facebook', 100)->nullable();
+
         });
 
-         // Insert some stuff
-        //  DB::table('users')->insert(
-        //     array(
-        //         'username' => 'admin',
-        //         'email' => 'admin@admin.pl',
-        //         'image' => 'https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png',
-        //         'password' => Hash::make('qwerty123'),
-        //     )
-        // );
+        
         App\User::create([
             'username' => 'admin',
             'email' => 'admin@admin.pl',

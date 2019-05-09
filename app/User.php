@@ -75,7 +75,18 @@ class User extends Authenticatable
     }
  
 
+    public function updateSocials($attributes, $user_id){
+        $facebook = $attributes['facebook'];
+        $twitter = $attributes['twitter'];
+        $stackoverflow = $attributes['stackoverflow'];
+        $github = $attributes['github'];
+        if(DB::update('UPDATE `users` SET `facebook`=? , `twitter`=?,`stackoverflow`=?, `github`=? WHERE `user_id`=?', [$facebook,$twitter,$stackoverflow,$github, $user_id]) == true)
+        {
+            return true;
+        }
+        return false;
 
+    }
     public function updateData($attributes, $user_id){
         $name = $attributes['name'];
         $surname = $attributes['surname'];

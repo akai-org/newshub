@@ -29,22 +29,36 @@ class SettingsController extends Controller
        $usr = Auth::user()->UpdatePassword($attributes, $user_id);
        if($usr == true);
 
-       return redirect()->back();
+       return redirect()->back()->with('passwordupdate', 'Pomyślnie zaaktualizowano hasło!');
        
        
     }
     
+    public function update_socials(Request $request){
+        $attributes = $request->validate([
+            'github' => 'nullable|url|min:5|max:90',
+            'facebook' => 'nullable|url|min:5|max:90',
+            'twitter' => 'nullable|url|min:5|max:90',
+            'stackoverflow' => 'nullable|url|min:5|max:90' 
+     ]);
+     $user_id = Auth::user()->user_id;
+     $usr = Auth::user()->updateSocials($attributes, $user_id);
+     if($usr == true);
+     return redirect()->back()->with('socials', 'Pomyślnie zaaktualizowano linki społeczności!');
+    }
+
+
     public function update_userdata(Request $request){
         $attributes = $request->validate([
                'name' => 'required|min:3|max:20',
-               'surname' => 'required|min:3|max:20',
+               'surname' => 'nullable|min:3|max:20',
                'email' => 'required|min:4',
-               'desc' => 'required|min:3' 
+               'desc' => 'nullable|min:3' 
         ]);
         $user_id = Auth::user()->user_id;
         $usr = Auth::user()->updateData($attributes, $user_id);
         if($usr == true);
-        return redirect()->back();
+        return redirect()->back()->with('userdata', 'Pomyślnie zaaktualizowano twoje dane!');
         
     }
 
