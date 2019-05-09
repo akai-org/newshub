@@ -20,10 +20,9 @@ class SettingsController extends Controller
     public function update_password(Request $request)
     {
         $attributes = $request->validate([
-            'oldpassword' => 'required',
-            'newpassword' => 'required|min:5|required_with:newpasswordrepeat|same:newpasswordrepeat',
-            'newpasswordrepeat' => 'required|min:5'
-            
+            'oldpassword' => 'nullable',
+            'newpassword' => 'nullable|min:5|required_with:newpasswordrepeat|same:newpasswordrepeat',
+            'newpasswordrepeat' => 'nullable|min:5'
         ]);
         $user_id = Auth::user()->user_id;
        $usr = Auth::user()->UpdatePassword($attributes, $user_id);
@@ -36,10 +35,6 @@ class SettingsController extends Controller
     
     public function update_socials(Request $request){
         $attributes = $request->validate([
-            'github' => 'nullable|url|min:5|max:90',
-            'facebook' => 'nullable|url|min:5|max:90',
-            'twitter' => 'nullable|url|min:5|max:90',
-            'stackoverflow' => 'nullable|url|min:5|max:90' 
      ]);
      $user_id = Auth::user()->user_id;
      $usr = Auth::user()->updateSocials($attributes, $user_id);
@@ -50,10 +45,15 @@ class SettingsController extends Controller
 
     public function update_userdata(Request $request){
         $attributes = $request->validate([
-               'name' => 'required|min:3|max:20',
-               'surname' => 'nullable|min:3|max:20',
-               'email' => 'required|min:4',
-               'desc' => 'nullable|min:3' 
+               'firstname' => 'nullable|min:3|max:20',
+               'lastname' => 'nullable|min:3|max:20',
+               'email' => 'nullable|min:4',
+               'description' => 'nullable|min:3',
+               'github' => 'nullable|url|min:5|max:90',
+               'facebook' => 'nullable|url|min:5|max:90',
+               'twitter' => 'nullable|url|min:5|max:90',
+               'stackoverflow' => 'nullable|url|min:5|max:90',   
+   
         ]);
         $user_id = Auth::user()->user_id;
         $usr = Auth::user()->updateData($attributes, $user_id);

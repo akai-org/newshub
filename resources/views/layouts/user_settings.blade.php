@@ -6,7 +6,8 @@
    <div class="user-buttons">
   
     @if (isset(Auth::user()->username ) && $user->username == Auth::user()->username)
-    
+    <form method="POST" action="{{ route('user_settings')}}">
+      {{ csrf_field() }}
     <a class="button social" href="{{ url('user/'.$user->username.'/settings') }}">
             <span class="icon">
               <i class="fa fa-cog"></i>
@@ -68,9 +69,6 @@
       
   
       <div class="user-profile">
-          <form method="POST" action="{{ route('user_settings') }}">
-              {{ csrf_field() }}
-
         @if (session('userdata'))
               <div class="notification is-success">
                   <h3 class="is-size-3">{{session('userdata')}}</h3>
@@ -78,7 +76,7 @@
           @endif
           @if (session('socials'))
           <div class="notification is-success">
-              <h3 class="is-size-3">{{session('status')}}</h3>
+              <h3 class="is-size-3">{{session('socials')}}</h3>
           </div>
       @endif
       @if (session('passwordupdate'))
@@ -92,13 +90,13 @@
         <div class="field is-grouped">
             
             <div class="control">
-              <input class="input" name="name" type="text" value="{{$user->firstname}}">
+              <input class="input" name="firstname" type="text" value="{{$user->firstname}}">
               
             </div>
           
   
         <div class="control">
-          <input class="input" name="surname" type="text" value="{{$user->lastname}}">
+          <input class="input" name="lastname" type="text" value="{{$user->lastname}}">
           
         </div>
       </div>
@@ -119,8 +117,8 @@
   @if ($errors->has('name'))
         <p class="help is-danger">{{ $errors->first('name') }}</p>
        @endif
-@if ($errors->has('surname'))
-<p class="help is-danger">{{ $errors->first('surname') }}</p>
+@if ($errors->has('lastname'))
+<p class="help is-danger">{{ $errors->first('lastname') }}</p>
 @endif
 @if ($errors->has('email'))
 <p class="help is-danger">{{ $errors->first('email') }}</p>
@@ -129,20 +127,11 @@
 <p class="help is-danger">{{ $errors->first('desc') }}</p>
 @endif
 <!-- dodac lapanie oraz dodac pola w bazie na githubowe profile etc.-->
-  <div class="field">
-        <div class="control">
-                <button class="button is-primary">Zapisz</button>
-              </div>
-
-  </div>
-          </form>
 
   <hr>
-
 <h3 class="is-size-3">Edycja linków społeczności</h3>
-<form method="POST" action="{{ route('user_settings')}}">
-  {{ csrf_field() }}
   <label class="label"><span class="fab fa-github"></span> GitHub:</label>
+  
 <div class="control">
   <input class="input" type="text" name="github"  value="{{$user->github}}" placeholder="https://github.com/akai-org/newshub">
 
@@ -178,19 +167,18 @@
   <p class="help is-danger">{{$errors->first('stackoverflow') }}</p>
 @endif
 
+</div>
 <div class="field">
   <div class="control">
-          <button class="button is-primary">Zapisz</button>
-        </div>
-
+    <button class="button is-primary">Zapisz</button>
+  </div>
 </div>
+
 </form>
 
-
+  <form method="POST" action="{{ route('change_password') }}">
+    @csrf
   <h3 class="is-size-3">Zmiana Hasła</h3>
-  
-<form method="POST" action="{{ route('user_settings') }}">
-        {{ csrf_field() }}
   <label class="label">Obecne Hasło:</label>
   <div class="control">
    

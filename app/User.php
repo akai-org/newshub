@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -76,27 +78,28 @@ class User extends Authenticatable
  
 
     public function updateSocials($attributes, $user_id){
-        $facebook = $attributes['facebook'];
-        $twitter = $attributes['twitter'];
-        $stackoverflow = $attributes['stackoverflow'];
-        $github = $attributes['github'];
-        if(DB::update('UPDATE `users` SET `facebook`=? , `twitter`=?,`stackoverflow`=?, `github`=? WHERE `user_id`=?', [$facebook,$twitter,$stackoverflow,$github, $user_id]) == true)
-        {
-            return true;
-        }
-        return false;
+        // $facebook = $attributes['facebook'];
+        // $twitter = $attributes['twitter'];
+        // $stackoverflow = $attributes['stackoverflow'];
+        // $github = $attributes['github'];
+        // if(DB::update('UPDATE `users` SET `facebook`=? , `twitter`=?,`stackoverflow`=?, `github`=? WHERE `user_id`=?', [$facebook,$twitter,$stackoverflow,$github, $user_id]) == true)
+        // {
+        //     return true;
+        // }
+        return Auth::user()->update($attributes);
 
     }
     public function updateData($attributes, $user_id){
-        $name = $attributes['name'];
-        $surname = $attributes['surname'];
-        $email =$attributes['email'];
-        $desc = $attributes['desc'];
-        if(DB::update('UPDATE `users` SET `firstname`=? , `lastname`=?,`email`=?, `description`=? WHERE `user_id`=?', [$name,$surname,$email,$desc, $user_id]) == true)
-        {
-            return true;
-        }
-        return false;
+        // $name = $attributes['name'];
+        // $surname = $attributes['surname'];
+        // $email =$attributes['email'];
+        // $desc = $attributes['desc'];
+        // if(DB::update('UPDATE `users` SET `firstname`=? , `lastname`=?,`email`=?, `description`=? WHERE `user_id`=?', [$name,$surname,$email,$desc, $user_id]) == true)
+        // {
+        //     return true;
+        // }
+        // return false;
+        return Auth::user()->update($attributes);
        // return $this->userData()->update($attributes);
     }
 
