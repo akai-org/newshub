@@ -1,7 +1,25 @@
 NewsHub
 ================================
 
-Społecznościowy agregator newsów - otwartoźródłowy klon serwisu Wykop.pl. Projekt realizowany w ramach Akademickiego Koła Aplikacji Internetowych (AKAI) na Politechnice Poznańskiej.
+Społecznościowy agregator newsów - otwartoźródłowy klon serwisu Wykop.pl zbudowany na bazie frameworka Laravel. Projekt realizowany w ramach Akademickiego Koła Aplikacji Internetowych (AKAI) na Politechnice Poznańskiej.
+
+### Funkcje
+- Logowanie i rejestracja użytkowników
+- Profil użytkownika
+  - Login, e-mail, imię, nazwisko, avatar
+  - Oddzielna podstrona z profilem użytkownika
+- Dodawanie nowych wpisów
+  - Formularz dodawania treści
+  - Automatyczne pobieranie treści ze źródła (tytuł, fragment tekstu, obrazki)
+ - Ocenianie wpisów (plusy i minusy)
+ - Komentarze
+ - Specjalne uprawnienia dla administratora (edycja, usuwanie)
+ - Powiadomienia (TODO)
+
+
+![NewsHub - Strona główna](https://i.imgur.com/hVMa5N2.png)
+
+![NewsHub - Dodawanie wpisu](https://i.imgur.com/If1Idro.png)
 
 ### Instrukcja 
 
